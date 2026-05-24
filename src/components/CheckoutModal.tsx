@@ -1,6 +1,6 @@
 import { useState, FormEvent } from "react";
 import { X, CheckCircle, ShieldAlert, Phone, MapPin, User, Tag, ShoppingBag, Landmark } from "lucide-react";
-import { CartItem } from "../types";
+import { CartItem, Order } from "../types";
 import { convertToBanglaNumber, formatBanglaPrice } from "../data";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -8,7 +8,7 @@ interface CheckoutModalProps {
   isOpen: boolean;
   onClose: () => void;
   cartItems: CartItem[];
-  onOrderSuccess: () => void; // Clear the state and reset
+  onOrderSuccess: (order: Order) => void; // Pass constructed order details back
 }
 
 type PaymentMethod = "cod" | "bkash" | "nagad" | "rocket";
@@ -25,11 +25,14 @@ export default function CheckoutModal({
   const [division, setDivision] = useState("Dhaka");
   const [address, setAddress] = useState("");
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("cod");
+  const [trxId, setTrxId] = useState("");
+  const [copiedNumber, setCopiedNumber] = useState(false);
   
   // Checkout states
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [orderCompleted, setOrderCompleted] = useState(false);
   const [orderId, setOrderId] = useState("");
+  const [createdOrder, setCreatedOrder] = useState<Order | null>(null);
 
   const subtotal = cartItems.reduce((acc, item) => {
     const discountedPrice = Math.round(
@@ -66,17 +69,40 @@ export default function CheckoutModal({
     // Success! Generate mock Order ID in Bangla, e.g. AB-827461
     const randId = Math.floor(100000 + Math.random() * 900000).toString();
     setOrderId("AB-" + convertToBanglaNumber(randId));
+    
+    // Construct real order model
+    const newOrder: Order = {
+      id: "AB-" + randId,
+      customerName: name,
+      phone: phone,
+      division: division,
+      address: address,
+      paymentMethod: paymentMethod,
+      items: [...cartItems],
+      subtotal: subtotal,
+      deliveryCharge: deliveryCharge,
+      totalAmount: totalAmount,
+      status: "Pending",
+      date: new Date().toLocaleString("bn-BD", { hour12: true }),
+      trxId: paymentMethod !== "cod" ? trxId : undefined
+    };
+    
+    setCreatedOrder(newOrder);
     setOrderCompleted(true);
     setErrors({});
   };
 
   const handleFinish = () => {
-    onOrderSuccess(); // Call app's success callback which resets cart
+    if (createdOrder) {
+      onOrderSuccess(createdOrder);
+    }
     setOrderCompleted(false);
     setName("");
     setPhone("");
     setAddress("");
     setPaymentMethod("cod");
+    setTrxId("");
+    setCreatedOrder(null);
     onClose();
   };
 
@@ -291,6 +317,66 @@ export default function CheckoutModal({
                             <span className="text-xs">রকেট মোবাইল পেমেন্ট</span>
                           </button>
                         </div>
+
+                        {paymentMethod !== "cod" && (
+                          <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="mt-4 p-4 bg-gradient-to-br from-rose-50/50 to-pink-50 border border-pink-100 rounded-2xl space-y-3.5 text-xs text-left"
+                            id="mfs-instructions-alert"
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-1.5 font-bold text-gray-800">
+                                <span className="text-sm">⚡</span>
+                                <span>
+                                  {paymentMethod === "bkash" && "বিকাশ (bKash)"}
+                                  {paymentMethod === "nagad" && "নগদ (Nagad)"}
+                                  {paymentMethod === "rocket" && "রকেট (Rocket)"} পার্সোনাল পেমেন্ট করুন
+                                </span>
+                              </div>
+                              <span className="bg-[#E53935] text-white text-[10px] font-black px-2 py-0.5 rounded-full select-none uppercase tracking-wider">
+                                সেন্ড মানি (Send Money)
+                              </span>
+                            </div>
+
+                            <p className="text-gray-700 font-semibold leading-relaxed">
+                              আমাদের পার্সোনাল নাম্বারে মোট <span className="font-sans font-black text-[#E53935] underline">৳{formatBanglaPrice(totalAmount)}</span> টাকা সেন্ড মানি করুন। নিচে পেমেন্ট রিসিভার নাম্বার দেওয়া আছে:
+                            </p>
+
+                            <div className="bg-white border border-rose-200/50 rounded-xl p-2.5 flex items-center justify-between">
+                              <div>
+                                <p className="text-[10px] text-gray-400 font-bold uppercase">রিসিভার নাম্বার (Receiver Number):</p>
+                                <p className="font-mono text-sm sm:text-base font-black text-gray-950 tracking-wide select-all">01823848660</p>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  navigator.clipboard.writeText("01823848660");
+                                  setCopiedNumber(true);
+                                  setTimeout(() => setCopiedNumber(false), 2500);
+                                }}
+                                className="bg-rose-50 text-rose-600 hover:bg-[#E53935] hover:text-white px-3 py-2 rounded-lg border border-rose-100 font-extrabold text-[10px] transition-all cursor-pointer flex items-center gap-1 shrink-0"
+                              >
+                                {copiedNumber ? (
+                                  <span className="text-green-600 font-bold">✓ কপি হয়েছে!</span>
+                                ) : (
+                                  <><span>📋</span> কপি করুন</>
+                                )}
+                              </button>
+                            </div>
+
+                            <div className="space-y-1.5 pt-1">
+                              <label className="block text-[11px] font-black text-gray-700">টাকা পাঠানোর পর বিকাশ/নগদ ট্রানজেকশন আইডি (TrxID) দিন: (ঐচ্ছিক)</label>
+                              <input
+                                type="text"
+                                placeholder="যেমন: 8X9Y7Z6W"
+                                value={trxId}
+                                onChange={(e) => setTrxId(e.target.value.trim().toUpperCase())}
+                                className="w-full text-xs font-mono font-bold uppercase bg-white border border-gray-300 rounded-xl px-3 py-2.5 outline-none focus:border-[#E53935] transition-all shadow-inner placeholder:text-gray-300 placeholder:normal-case"
+                              />
+                            </div>
+                          </motion.div>
+                        )}
                       </div>
 
                       {/* Brief Bill Sheet */}
@@ -377,6 +463,12 @@ export default function CheckoutModal({
                         {paymentMethod === "rocket" && "💜 রকেট পেমেন্ট"}
                       </span>
                     </div>
+                    {paymentMethod !== "cod" && trxId && (
+                      <div className="flex justify-between text-gray-600">
+                        <span>ট্রানজেকশন আইডি:</span>
+                        <span className="font-mono font-black text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-100">{trxId}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between text-gray-900 font-extrabold pt-1.5 border-t border-gray-200">
                       <span>মোট পরিশোধযোগ্য মূল্য:</span>
                       <span className="text-[#E53935]">৳{formatBanglaPrice(totalAmount)}</span>

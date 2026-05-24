@@ -12,6 +12,8 @@ interface HeaderProps {
   setSelectedCategory: (category: string) => void;
   onContactScroll: () => void;
   onProductsScroll: () => void;
+  isAdminMode: boolean;
+  setIsAdminMode: (val: boolean) => void;
 }
 
 export default function Header({
@@ -23,6 +25,8 @@ export default function Header({
   setSelectedCategory,
   onContactScroll,
   onProductsScroll,
+  isAdminMode,
+  setIsAdminMode,
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -118,6 +122,12 @@ export default function Header({
               >
                 যোগাযোগ
               </button>
+              <button
+                onClick={() => setIsAdminMode(!isAdminMode)}
+                className="text-xs font-bold bg-[#E53935]/10 text-[#E53935] hover:bg-[#E53935]/25 px-4 py-2 rounded-full border border-red-200 transition-colors cursor-pointer inline-flex items-center gap-1.5 font-sans"
+              >
+                ⚙️ {isAdminMode ? "কাস্টমার ভিউ" : "এডমিন প্যানেল"}
+              </button>
             </nav>
 
             {/* Shopping Cart Icon with Count Badge */}
@@ -205,6 +215,15 @@ export default function Header({
                 className="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-[#E53935] transition-colors"
               >
                 যোগাযোগ করুন
+              </button>
+              <button
+                onClick={() => {
+                  setIsAdminMode(!isAdminMode);
+                  setMobileMenuOpen(false);
+                }}
+                className="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-bold text-[#E53935] bg-red-50 hover:bg-red-100 transition-colors"
+              >
+                ⚙️ {isAdminMode ? "কাস্টমার ভিউ" : "এডমিন প্যানেল (ড্যাশবোর্ড)"}
               </button>
             </div>
           </motion.div>

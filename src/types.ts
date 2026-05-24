@@ -18,3 +18,20 @@ export interface Category {
   name: string;
   iconName: string; // To load appropriate LucideReact icon
 }
+
+export interface Order {
+  id: string; // e.g., "AB-827461"
+  customerName: string;
+  phone: string;
+  division: string;
+  address: string;
+  paymentMethod: "cod" | "bkash" | "nagad" | "rocket";
+  items: CartItem[];
+  subtotal: number;
+  deliveryCharge: number;
+  totalAmount: number;
+  status: "Pending" | "Approved" | "Shipped" | "Delivered" | "Cancelled";
+  date: string;
+  trxId?: string;
+}
+
