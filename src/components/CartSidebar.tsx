@@ -61,15 +61,15 @@ export default function CartSidebar({
             <div className="p-4 sm:p-5 border-b border-gray-100 flex items-center justify-between bg-red-50/50">
               <div className="flex items-center gap-2">
                 <ShoppingBasket className="w-5 h-5 text-[#E53935]" />
-                <h2 className="text-lg sm:text-xl font-black text-gray-800">আপনার শপিং ব্যাগ</h2>
+                <h2 className="text-lg sm:text-xl font-black text-gray-800">Your Shopping Bag</h2>
                 <span className="bg-[#E53935] text-white text-xs font-bold px-2.5 py-0.5 rounded-full ml-1">
-                  {convertToBanglaNumber(cartItems.length)}
+                  {cartItems.length}
                 </span>
               </div>
               <button
                 onClick={onClose}
                 className="p-1.5 hover:bg-red-50 hover:text-[#E53935] rounded-full text-gray-400 transition-colors cursor-pointer"
-                aria-label="বন্ধ করুন"
+                aria-label="Close"
                 id="close-cart-btn"
               >
                 <X className="w-5 h-5" />
@@ -85,14 +85,14 @@ export default function CartSidebar({
                     <ShoppingBasket className="w-14 h-14" />
                   </div>
                   <div className="space-y-1.5 max-w-xs">
-                    <p className="text-lg font-bold text-gray-900">আপনার ব্যাগটি শূন্য!</p>
-                    <p className="text-xs sm:text-sm text-gray-500">ব্যাগে কোনো প্রোডাক্ট নেই। আজকের বাজার কালেকশন থেকে আপনার পছন্দের প্রোডাক্ট সিলেক্ট করুন।</p>
+                    <p className="text-lg font-bold text-gray-900">Your bag is empty!</p>
+                    <p className="text-xs sm:text-sm text-gray-500">There are no products in your shopping bag. Choose from our outstanding collection of premium goods.</p>
                   </div>
                   <button
                     onClick={onClose}
                     className="bg-[#E53935] text-white hover:bg-red-700 font-bold text-xs sm:text-sm px-6 py-2.5 rounded-full shadow-md transition-all cursor-pointer"
                   >
-                    শপিং শুরু করুন
+                    Start Shopping
                   </button>
                 </div>
               ) : (
@@ -124,12 +124,12 @@ export default function CartSidebar({
                           <h4 className="font-bold text-gray-800 text-xs sm:text-sm leading-tight truncate">
                             {item.product.name}
                           </h4>
-                          <p className="text-xs text-gray-400 font-medium">বিভাগ: {
-                            item.product.category === "clothing" ? "পোশাক" :
-                            item.product.category === "electronics" ? "ইলেকট্রনিক্স" :
-                            item.product.category === "food" ? "খাবার" :
-                            item.product.category === "beauty" ? "মেয়েদের রূপচর্চা ও সৌন্দর্য" :
-                            item.product.category === "toys" ? "খেলনা" : "অন্যান্য"
+                          <p className="text-xs text-gray-400 font-medium">Category: {
+                            item.product.category === "clothing" ? "Clothing" :
+                            item.product.category === "electronics" ? "Electronics" :
+                            item.product.category === "food" ? "Food & Groceries" :
+                            item.product.category === "beauty" ? "Beauty & Cosmetics" :
+                            item.product.category === "toys" ? "Toys & Games" : "Accessories"
                           }</p>
                         </div>
 
@@ -151,17 +151,17 @@ export default function CartSidebar({
                             <button
                               onClick={() => onUpdateQuantity(item.product.id, "minus")}
                               className="p-1 sm:p-1.5 hover:bg-red-50 hover:text-[#E53935] transition-colors cursor-pointer"
-                              aria-label="পরিমাণ কমান"
+                              aria-label="Decrease Quantity"
                             >
                               <Minus className="w-3 h-3" />
                             </button>
                             <span className="font-bold text-xs px-2.5 text-gray-800 text-center min-w-6">
-                              {convertToBanglaNumber(item.quantity)}
+                              {item.quantity}
                             </span>
                             <button
                               onClick={() => onUpdateQuantity(item.product.id, "plus")}
                               className="p-1 sm:p-1.5 hover:bg-red-50 hover:text-[#E53935] transition-colors cursor-pointer"
-                              aria-label="পরিমাণ বাড়ান"
+                              aria-label="Increase Quantity"
                             >
                               <Plus className="w-3 h-3" />
                             </button>
@@ -173,7 +173,7 @@ export default function CartSidebar({
                       <button
                         onClick={() => onRemoveItem(item.product.id)}
                         className="absolute top-2.5 right-2.5 text-gray-400 hover:text-[#E53935] p-1 rounded-md hover:bg-red-50 transition-colors cursor-pointer"
-                        aria-label="আইটেম মুছুন"
+                        aria-label="Remove Item"
                       >
                         <Trash2 className="w-4.5 h-4.5" />
                       </button>
@@ -189,21 +189,21 @@ export default function CartSidebar({
                 <div className="space-y-2 text-sm">
                   {/* Raw Price */}
                   <div className="flex items-center justify-between text-gray-500">
-                    <span>মূল দাম</span>
+                    <span>Original Price</span>
                     <span className="font-semibold">৳{formatBanglaPrice(totalOriginal)}</span>
                   </div>
 
                   {/* Savings */}
                   {discountSavings > 0 && (
                     <div className="flex items-center justify-between text-green-600 font-medium">
-                      <span>অফার ডিসকাউন্ট (ছাড়)</span>
+                      <span>Discount (Savings)</span>
                       <span>-৳{formatBanglaPrice(discountSavings)}</span>
                     </div>
                   )}
 
                   {/* Delivery Charges (Flat 60 Taka for Bangladesh) */}
                   <div className="flex items-center justify-between text-gray-500">
-                    <span>ডেলিভারি চার্জ</span>
+                    <span>Delivery Charge</span>
                     <span className="font-medium">৳{formatBanglaPrice(60)}</span>
                   </div>
 
@@ -211,7 +211,7 @@ export default function CartSidebar({
 
                   {/* Grand total */}
                   <div className="flex items-center justify-between text-base font-black text-gray-900">
-                    <span>সর্বমোট পরিশোধযোগ্য মূল্য</span>
+                    <span>Grand Total</span>
                     <span className="text-[#E53935] text-[19px]">
                       ৳{formatBanglaPrice(subtotal + 60)}
                     </span>
@@ -224,7 +224,7 @@ export default function CartSidebar({
                   className="w-full bg-[#E53935] hover:bg-red-700 text-white font-extrabold text-sm sm:text-base py-3.5 sm:py-4 rounded-2xl shadow-lg hover:shadow-red-200 transition-all cursor-pointer flex items-center justify-center gap-2 transform active:scale-98"
                   id="checkout-cta-btn"
                 >
-                  অর্ডার করুন
+                  Place Order (Checkout)
                 </button>
               </div>
             )}

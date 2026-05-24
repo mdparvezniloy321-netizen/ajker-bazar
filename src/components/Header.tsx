@@ -53,7 +53,7 @@ export default function Header({
     <header className="sticky top-0 z-50 bg-white border-b border-rose-100 shadow-sm" id="shop-header">
       {/* Top Banner Accent */}
       <div className="bg-[#E53935] text-white py-1.5 px-4 text-center text-xs sm:text-sm font-medium tracking-wide">
-        💥 বিশেষ অফার! প্রতিটি কেনাকাটায় নিশ্চিত আকর্ষণীয় উপহার এবং সারা দেশে ক্যাশ অন ডেলিভারি!
+        💥 SPECIAL OFFER! Guaranteed exciting gifts with every purchase and Cash on Delivery nationwide!
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,7 +73,7 @@ export default function Header({
                 আজকের বাজার<span className="text-gray-800 text-[15px] font-normal font-sans">.com</span>
               </span>
               <span className="text-[10px] sm:text-[11px] text-gray-500 font-medium tracking-wider">
-                সেরা পণ্য, সেরা দাম
+                Best Products, Best Prices
               </span>
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function Header({
             <div className="relative w-full">
               <input
                 type="text"
-                placeholder="পণ্য খুঁজুন..."
+                placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full text-sm bg-gray-50 text-gray-900 pl-4 pr-11 py-2.5 rounded-full border border-gray-200 focus:outline-none focus:border-[#E53935] focus:bg-white focus:ring-2 focus:ring-rose-100 transition-all placeholder-gray-400"
@@ -102,40 +102,40 @@ export default function Header({
                 onClick={() => handleNavClick("home")}
                 className="text-gray-600 hover:text-[#E53935] font-medium text-sm transition-colors cursor-pointer"
               >
-                হোম
+                Home
               </button>
               <button
                 onClick={() => handleNavClick("products")}
                 className="text-gray-600 hover:text-[#E53935] font-medium text-sm transition-colors cursor-pointer"
               >
-                পণ্য
+                Products
               </button>
               <button
                 onClick={() => handleNavClick("offers")}
                 className="text-gray-600 hover:text-[#E53935] font-medium text-sm transition-colors cursor-pointer bg-red-50 text-[#E53935] px-3 py-1 rounded-full hover:bg-red-100"
               >
-                অফার
+                Offers
               </button>
               <button
                 onClick={() => handleNavClick("contact")}
                 className="text-gray-600 hover:text-[#E53935] font-medium text-sm transition-colors cursor-pointer"
               >
-                যোগাযোগ
+                Contact
               </button>
               <button
                 onClick={() => setIsAdminMode(!isAdminMode)}
                 className="text-xs font-bold bg-[#E53935]/10 text-[#E53935] hover:bg-[#E53935]/25 px-4 py-2 rounded-full border border-red-200 transition-colors cursor-pointer inline-flex items-center gap-1.5 font-sans"
               >
-                ⚙️ {isAdminMode ? "কাস্টমার ভিউ" : "এডমিন প্যানেল"}
+                ⚙️ {isAdminMode ? "Customer View" : "Admin Panel"}
               </button>
             </nav>
 
             {/* Shopping Cart Icon with Count Badge */}
             <button
-              onClick={onCartToggle}
-              className="relative p-2.5 text-gray-700 hover:text-[#E53935] hover:bg-rose-50 rounded-full transition-all cursor-pointer"
-              aria-label="শপিং কার্ট"
-              id="cart-toggle-btn"
+               onClick={onCartToggle}
+               className="relative p-2.5 text-gray-700 hover:text-[#E53935] hover:bg-rose-50 rounded-full transition-all cursor-pointer"
+               aria-label="Shopping Cart"
+               id="cart-toggle-btn"
             >
               <ShoppingCart className="w-6 h-6" />
               <AnimatePresence>
@@ -146,7 +146,7 @@ export default function Header({
                     exit={{ scale: 0 }}
                     className="absolute top-1 right-1 bg-[#E53935] text-white text-[10px] md:text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm"
                   >
-                    {convertToBanglaNumber(cartCount)}
+                    {cartCount}
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -156,7 +156,7 @@ export default function Header({
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 sm:p-2.5 text-gray-700 hover:text-[#E53935] hover:bg-rose-50 rounded-full lg:hidden transition-colors cursor-pointer"
-              aria-label="মেনু"
+              aria-label="Menu"
               id="mobile-menu-btn"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -169,7 +169,7 @@ export default function Header({
           <div className="relative w-full">
             <input
               type="text"
-              placeholder="পণ্য খুঁজুন..."
+              placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full text-xs bg-gray-50 text-gray-900 pl-4 pr-11 py-2 rounded-full border border-gray-200 focus:outline-none focus:border-[#E53935] focus:bg-white transition-all placeholder-gray-400"
@@ -196,25 +196,25 @@ export default function Header({
                 onClick={() => handleNavClick("home")}
                 className="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-[#E53935] transition-colors"
               >
-                হোম
+                Home
               </button>
               <button
                 onClick={() => handleNavClick("products")}
                 className="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-[#E53935] transition-colors"
               >
-                পণ্য সমূহ
+                Products
               </button>
               <button
                 onClick={() => handleNavClick("offers")}
                 className="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-semibold text-[#E53935] bg-red-50 hover:bg-red-100 transition-colors"
               >
-                বিশেষ সুপার অফারসমূহ
+                Special Super Offers
               </button>
               <button
                 onClick={() => handleNavClick("contact")}
                 className="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-[#E53935] transition-colors"
               >
-                যোগাযোগ করুন
+                Contact Us
               </button>
               <button
                 onClick={() => {
@@ -223,7 +223,7 @@ export default function Header({
                 }}
                 className="block w-full text-left px-4 py-2.5 rounded-lg text-sm font-bold text-[#E53935] bg-red-50 hover:bg-red-100 transition-colors"
               >
-                ⚙️ {isAdminMode ? "কাস্টমার ভিউ" : "এডমিন প্যানেল (ড্যাশবোর্ড)"}
+                ⚙️ {isAdminMode ? "Customer View" : "Admin Panel (Dashboard)"}
               </button>
             </div>
           </motion.div>

@@ -16,29 +16,29 @@ export default function Footer({ onContactRef }: FooterProps) {
           <div className="flex items-center gap-3 justify-center sm:justify-start">
             <span className="text-2xl sm:text-3xl">🚚</span>
             <div>
-              <h5 className="font-bold text-sm sm:text-base leading-none">সারা বাংলাদেশে ডেলিভারি</h5>
-              <span className="text-xs text-red-100">ঢাকার বাইরে মাত্র ১২০ টাকা</span>
+              <h5 className="font-bold text-sm sm:text-base leading-none">Bangladesh Delivery</h5>
+              <span className="text-xs text-red-100">Outside Dhaka only ৳120</span>
             </div>
           </div>
           <div className="flex items-center gap-3 justify-center sm:justify-start">
             <span className="text-2xl sm:text-3xl">🔄</span>
             <div>
-              <h5 className="font-bold text-sm sm:text-base leading-none">সহজ রিটার্ন পলিসি</h5>
-              <span className="text-xs text-red-100">৭ দিনের মধ্যে প্রোডাক্ট বদল করুন</span>
+              <h5 className="font-bold text-sm sm:text-base leading-none">Easy Return Policy</h5>
+              <span className="text-xs text-red-100">Replace product within 7 days</span>
             </div>
           </div>
           <div className="flex items-center gap-3 justify-center sm:justify-start">
             <span className="text-2xl sm:text-3xl">🛡️</span>
             <div>
-              <h5 className="font-bold text-sm sm:text-base leading-none">১০০% ক্যাশ অন ডেলিভারি</h5>
-              <span className="text-xs text-red-100">প্রোডাক্ট হাতে পেয়ে টাকা পরিশোধ</span>
+              <h5 className="font-bold text-sm sm:text-base leading-none">100% Cash on Delivery</h5>
+              <span className="text-xs text-red-100">Pay after receiving product</span>
             </div>
           </div>
           <div className="flex items-center gap-3 justify-center sm:justify-start">
             <span className="text-2xl sm:text-3xl">📞</span>
             <div>
-              <h5 className="font-bold text-sm sm:text-base leading-none">২৪/৭ কাস্টমার সাপোর্ট</h5>
-              <span className="text-xs text-red-100">সরাসরি কথা বলুন প্রয়োজনে</span>
+              <h5 className="font-bold text-sm sm:text-base leading-none">24/7 Support</h5>
+              <span className="text-xs text-red-100">Direct support line</span>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function Footer({ onContactRef }: FooterProps) {
           </div>
           
           <p className="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-sm mx-auto md:mx-0">
-            আজকের বাজার ডট কম বাংলাদেশের একটি নির্ভরযোগ্য ও বিশ্বস্ত অনলাইন মার্চেন্ট শপিং শপ। আমাদের লক্ষ্য হচ্ছে দেশ সেরা প্রিমিয়াম মানের লেবেল ও ট্রেন্ডি পোশাক এবং ক্যাজুয়াল আনুষঙ্গিক সামগ্রী অত্যন্ত সুলভ মূল্যে আপনার দোরগোড়ায় পৌঁছে দেওয়া।
+            Ajker Bazar is a reliable and trusted online store in Bangladesh. Our goal is to deliver premium quality products and trendy apparel to your doorstep at wholesale prices.
           </p>
 
           <div className="flex items-center justify-center md:justify-start gap-4 pt-2">
@@ -68,7 +68,7 @@ export default function Footer({ onContactRef }: FooterProps) {
               target="_blank" 
               rel="noreferrer"
               className="bg-gray-800 hover:bg-[#E53935] hover:text-white text-gray-400 p-2.5 rounded-full transition-colors"
-              aria-label="ফেসবুক পেজ"
+              aria-label="Facebook Page"
             >
               <Facebook className="w-5 h-5" />
             </a>
@@ -77,13 +77,13 @@ export default function Footer({ onContactRef }: FooterProps) {
               target="_blank" 
               rel="noreferrer"
               className="bg-gray-800 hover:bg-[#E53935] hover:text-white text-gray-400 p-2.5 rounded-full transition-colors"
-              aria-label="ইউটিউব চ্যানেল"
+              aria-label="YouTube Channel"
             >
               <Youtube className="w-5 h-5" />
             </a>
             <div className="bg-gray-800 text-yellow-500 text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-1">
               <ShieldCheck className="w-4 h-4 text-yellow-500" />
-              <span>ভেরিফাইড পেজ</span>
+              <span>Verified Page</span>
             </div>
           </div>
         </div>
@@ -91,27 +91,27 @@ export default function Footer({ onContactRef }: FooterProps) {
         {/* Links Column */}
         <div className="md:col-span-3 text-center md:text-left">
           <h4 className="text-white font-extrabold text-sm sm:text-base border-l-4 border-[#E53935] pl-2.5 mb-5 md:mb-6 uppercase tracking-wider">
-            গুরুত্বপূর্ণ লিংকসমূহ
+            Useful Links
           </h4>
           <ul className="space-y-3.5 text-xs sm:text-sm text-gray-400">
             <li>
               <a href="#about" className="hover:text-white hover:underline transition-colors block">
-                সম্পর্কে আমরা (About Us)
+                About Us
               </a>
             </li>
             <li>
               <a href="#return" className="hover:text-white hover:underline transition-colors block">
-                রিটার্ন পলিসি (Return Policy)
+                Return Policy
               </a>
             </li>
             <li>
               <a href="#privacy" className="hover:text-white hover:underline transition-colors block">
-                প্রাইভেসি পলিসি (Privacy Policy)
+                Privacy Policy
               </a>
             </li>
             <li>
               <a href="#terms" className="hover:text-white hover:underline transition-colors block">
-                ব্যবহারের শর্তাবলী (Terms & Service)
+                Terms of Service
               </a>
             </li>
           </ul>
@@ -120,23 +120,23 @@ export default function Footer({ onContactRef }: FooterProps) {
         {/* Contact column */}
         <div className="md:col-span-4 text-center md:text-left space-y-4">
           <h4 className="text-white font-extrabold text-sm sm:text-base border-l-4 border-[#E53935] pl-2.5 mb-5 md:mb-6 uppercase tracking-wider">
-            সরাসরি যোগাযোগ
+            Contact Channels
           </h4>
           
           <div className="space-y-3.5 text-xs sm:text-sm text-gray-400">
             <div className="flex items-start gap-3 justify-center md:justify-start">
               <MapPin className="w-5 h-5 text-[#E53935] shrink-0 mt-0.5" />
-              <span>হাউজ নং- ৪৫, রোড নং- ৮, সেক্টর- ১০, উত্তরা, ঢাকা- ১২৩০, বাংলাদেশ।</span>
+              <span>House 45, Road 8, Sector 10, Uttara, Dhaka-1230, Bangladesh.</span>
             </div>
 
             <div className="flex items-center gap-3 justify-center md:justify-start">
               <Phone className="w-5 h-5 text-[#E53935] shrink-0" />
-              <span>হটলাইন: +৮৮০ ১৭৫৫ ৫৪৪ ৩২২</span>
+              <span>Hotline: +880 1755 544 322</span>
             </div>
 
             <div className="flex items-center gap-3 justify-center md:justify-start">
               <Mail className="w-5 h-5 text-[#E53935] shrink-0" />
-              <span>সহায়তায়: support@ajker-bazar.com</span>
+              <span>Support: support@ajker-bazar.com</span>
             </div>
           </div>
         </div>
@@ -146,9 +146,9 @@ export default function Footer({ onContactRef }: FooterProps) {
       {/* Bottom Legal Copyright */}
       <div className="border-t border-gray-800 py-6 text-center text-xs text-gray-500 bg-gray-950 px-4">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 font-medium">
-          <p>© ২০২৬ আজকের বাজার.com। সর্বস্বত্ব সংরক্ষিত।</p>
+          <p>© 2026 Ajker Bazar. All rights reserved.</p>
           <p className="flex items-center gap-1 justify-center">
-            মেইড উইথ <Heart className="w-3.5 h-3.5 text-[#E53935] fill-[#E53935]" /> ইন বাংলাদেশ।
+            Made with <Heart className="w-3.5 h-3.5 text-[#E53935] fill-[#E53935]" /> in Bangladesh.
           </p>
         </div>
       </div>

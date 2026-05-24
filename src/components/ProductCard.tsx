@@ -49,7 +49,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         {/* Discount Badge */}
         {discountPercentage > 0 && (
           <div className="absolute top-3 left-3 bg-[#E53935] text-white font-extrabold text-xs sm:text-sm px-2.5 py-1 rounded-lg shadow-md z-10 select-none">
-            {convertToBanglaNumber(discountPercentage)}% ছাড়
+            {discountPercentage}% OFF
           </div>
         )}
       </div>
@@ -60,23 +60,23 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         {/* Name and Stars */}
         <div className="space-y-1.5">
           <span className="text-[10px] uppercase font-bold tracking-wide">
-            {product.category === "clothing" && <span className="text-gray-400">পোশাক</span>}
-            {product.category === "electronics" && <span className="text-gray-400">ইলেকট্রনিক্স</span>}
-            {product.category === "food" && <span className="text-gray-400">খাবার</span>}
+            {product.category === "clothing" && <span className="text-gray-400">Clothing</span>}
+            {product.category === "electronics" && <span className="text-gray-400">Electronics</span>}
+            {product.category === "food" && <span className="text-gray-400">Food & Groceries</span>}
             {product.category === "beauty" && (
               <span className="text-[#E53935] bg-rose-50 px-2 py-0.5 rounded-full border border-rose-100 inline-flex items-center gap-1 font-sans">
-                ✨ মেয়েদের রূপচর্চা ও সৌন্দর্য
+                ✨ Beauty & Cosmetics
               </span>
             )}
-            {product.category === "toys" && <span className="text-gray-400">খেলনা</span>}
-            {product.category === "accessories" && <span className="text-gray-400">বিশেষ পণ্য</span>}
+            {product.category === "toys" && <span className="text-gray-400">Toys & Games</span>}
+            {product.category === "accessories" && <span className="text-gray-400">Accessories</span>}
           </span>
           <h3 className="font-bold text-gray-800 text-sm sm:text-[15px] leading-snug line-clamp-2 h-10 group-hover:text-[#E53935] transition-colors">
             {name}
           </h3>
           <div className="flex items-center justify-between pt-0.5">
             {renderStars(rating)}
-            <span className="text-[10px] text-gray-400 font-medium">({convertToBanglaNumber(5)}/{convertToBanglaNumber(rating)})</span>
+            <span className="text-[10px] text-gray-400 font-medium">({rating}/5)</span>
           </div>
         </div>
 
@@ -101,7 +101,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
             id={`add-to-cart-btn-${product.id}`}
           >
             <ShoppingCart className="w-4 h-4 shrink-0" />
-            কার্টে যোগ করুন
+            Add to Cart
           </button>
         </div>
 

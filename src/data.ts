@@ -1,21 +1,21 @@
 import { Product, Category } from "./types";
 
-// Categories in Bangla with appropriate Lucide Icon strings
+// Categories in English with appropriate Lucide Icon strings
 export const categories: Category[] = [
-  { id: "all", name: "সব পণ্য", iconName: "LayoutGrid" },
-  { id: "clothing", name: "পোশাক", iconName: "Shirt" },
-  { id: "electronics", name: "ইলেকট্রনিক্স", iconName: "Smartphone" },
-  { id: "food", name: "খাবার", iconName: "Flame" },
-  { id: "beauty", name: "মেয়েদের রূপচর্চা ও সৌন্দর্য", iconName: "Sparkles" },
-  { id: "toys", name: "খেলনা", iconName: "Gamepad" },
-  { id: "accessories", name: "আরও", iconName: "Tv" },
+  { id: "all", name: "All Products", iconName: "LayoutGrid" },
+  { id: "clothing", name: "Clothing", iconName: "Shirt" },
+  { id: "electronics", name: "Electronics", iconName: "Smartphone" },
+  { id: "food", name: "Food & Groceries", iconName: "Flame" },
+  { id: "beauty", name: "Women's Beauty & Cosmetics", iconName: "Sparkles" },
+  { id: "toys", name: "Toys & Games", iconName: "Gamepad" },
+  { id: "accessories", name: "Others", iconName: "Tv" },
 ];
 
-// 12 curated products in Bangla with high-quality unsplash images
+// 12 curated products in English with high-quality unsplash images
 export const sampleProducts: Product[] = [
   {
     id: "p1",
-    name: "প্রিমিয়াম উলের হুডি (পিওর ব্ল্যাক)",
+    name: "Premium Woolen Hoodie (Pure Black)",
     price: 1550,
     discountPercentage: 20,
     category: "clothing",
@@ -24,7 +24,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p2",
-    name: "ক্ল্যাসিক কটন স্লিম-ফিট ক্যাজুয়াল শার্ট",
+    name: "Classic Cotton Slim-Fit Casual Shirt",
     price: 1200,
     discountPercentage: 15,
     category: "clothing",
@@ -33,7 +33,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p3",
-    name: "মেটাল ফ্রেম প্রিমিয়াম হুডি জ্যাকেট",
+    name: "Premium Metal Frame Hoodie Jacket",
     price: 2400,
     discountPercentage: 25,
     category: "clothing",
@@ -42,7 +42,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p4",
-    name: "স্মার্ট ফিটনেস ট্র্যাকার ও হার্ট স্পোর্টস ব্যান্ড",
+    name: "Smart Fitness Tracker & Heart Rate Band",
     price: 2800,
     discountPercentage: 10,
     category: "electronics",
@@ -51,7 +51,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p5",
-    name: "নয়েজ ক্যান্সেলেশন ওয়্যারলেস স্টুডিও হেডফোন",
+    name: "Noise Cancelling Wireless Studio Headphones",
     price: 3500,
     discountPercentage: 30,
     category: "electronics",
@@ -60,7 +60,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p6",
-    name: "আল্ট্রা-ডিফিনিশন ওয়্যারলেস মিনি ব্লুটুথ স্পিকার",
+    name: "Ultra-Definition Wireless Mini Bluetooth Speaker",
     price: 1850,
     discountPercentage: 18,
     category: "electronics",
@@ -69,7 +69,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p7",
-    name: "প্রিমিয়াম ক্রাঞ্চি মিক্সড ড্রাই ফ্রুটস অ্যান্ড নাটস",
+    name: "Premium Crunchy Mixed Dry Fruits & Nuts",
     price: 950,
     discountPercentage: 8,
     category: "food",
@@ -78,7 +78,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p8",
-    name: "১০০% খাঁটি সুন্দরবনের প্রাকৃতিক চাকের মধু",
+    name: "100% Pure Sundarbans Natural Bee Honey",
     price: 1100,
     discountPercentage: 12,
     category: "food",
@@ -87,7 +87,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p9",
-    name: "অর্গানিক কোরিয়ান গ্লো ফেস ফেসিয়াল সিরাম",
+    name: "Organic Korean Glow Facial Care Serum",
     price: 1450,
     discountPercentage: 20,
     category: "beauty",
@@ -96,7 +96,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p9_1",
-    name: "কোরিয়ান ভিটামিন সি গ্লো বুস্টার ময়েশ্চারাইজার ক্রিম",
+    name: "Korean Vitamin C Glow Booster Moisturizer Cream",
     price: 1350,
     discountPercentage: 15,
     category: "beauty",
@@ -105,7 +105,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p9_2",
-    name: "পন্ডস ব্রাইট বিউটি ওভাল স্পটলেস স্পট রিমুভাল ক্রিম",
+    name: "Ponds Bright Beauty Spotless Spot Removal Cream",
     price: 490,
     discountPercentage: 10,
     category: "beauty",
@@ -114,7 +114,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p9_3",
-    name: "সিল্কি সফট লং-লাস্টিং ম্যাট লিপস্টিক সেট (৫টি রোমান্টিক শেড)",
+    name: "Silky Soft Long-Lasting Matte Lipstick Set (5 Shades)",
     price: 1150,
     discountPercentage: 25,
     category: "beauty",
@@ -123,7 +123,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p9_4",
-    name: " গর্জিয়াস অল-ইন-ওয়ান গোল্ডেন গ্লো মেকআপ কিট অ্যান্ড আইশ্যাডো বক্স",
+    name: "Gorgeous All-in-One Golden Glow Makeup & Eyeshadow Kit",
     price: 2450,
     discountPercentage: 18,
     category: "beauty",
@@ -132,7 +132,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p9_5",
-    name: "মেয়েদের প্রিমিয়াম সিল্ক গর্জিয়াস এমব্রয়ডারি ডিজিটাল প্রিন্ট শাড়ি",
+    name: "Women's Premium Silk Gorgeous Embroidered Digital Saree",
     price: 3600,
     discountPercentage: 15,
     category: "clothing",
@@ -141,7 +141,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p9_6",
-    name: "ডিজাইনার জর্জেট পার্টি থ্রি-পিস লং কুর্তি স্যালওয়ার স্যুট",
+    name: "Designer Georgette Party Three-Piece Long Kurti Suit",
     price: 2850,
     discountPercentage: 20,
     category: "clothing",
@@ -150,7 +150,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p10",
-    name: "ন্যাচারাল সুদিং অ্যালোভেরা ময়শ্চারাইজিং জেল",
+    name: "Natural Soothing Aloe Vera Moisturizing Gel",
     price: 490,
     discountPercentage: 10,
     category: "beauty",
@@ -159,7 +159,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p11",
-    name: "বাচ্চাদের ইন্টারেক্টিভ রিমোট কন্ট্রোল স্পোর্টস কার",
+    name: "Kids Interactive Remote Control Sports Car",
     price: 2100,
     discountPercentage: 15,
     category: "toys",
@@ -168,7 +168,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p12",
-    name: "রঙ্গিন জ্যামিতিক কাঠের ব্লক পাজল সেট",
+    name: "Colorful Geometric Wooden Block Puzzle Set",
     price: 750,
     discountPercentage: 10,
     category: "toys",
@@ -177,7 +177,7 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p13",
-    name: "বাইকার স্পেশাল ট্রাভেল ওয়াটারপ্রুফ ডাফেল ব্যাকপ্যাক",
+    name: "Biker Special Travel Waterproof Duffel Backpack",
     price: 2600,
     discountPercentage: 15,
     category: "accessories",
@@ -186,35 +186,147 @@ export const sampleProducts: Product[] = [
   },
   {
     id: "p14",
-    name: "প্রিমিয়াম রিয়েল লেদার ক্যাজুয়াল বাইফোল্ড ওয়ালেট",
+    name: "Premium Real Leather Casual Bifold Wallet",
     price: 1350,
     discountPercentage: 20,
     category: "accessories",
     image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80",
     rating: 4,
+  },
+  {
+    id: "p15",
+    name: "Classic Navy Blue Slim-Fit Blazer Suit",
+    price: 3200,
+    discountPercentage: 15,
+    category: "clothing",
+    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80",
+    rating: 5,
+  },
+  {
+    id: "p16",
+    name: "Elegant Evening Party Silk Gown (Crimson Red)",
+    price: 4500,
+    discountPercentage: 20,
+    category: "clothing",
+    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80",
+    rating: 5,
+  },
+  {
+    id: "p17",
+    name: "Multi-Device Wireless Mechanical Keyboard",
+    price: 3800,
+    discountPercentage: 12,
+    category: "electronics",
+    image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80",
+    rating: 5,
+  },
+  {
+    id: "p18",
+    name: "4K Ultra-HD Waterproof Sports Action Camera",
+    price: 7500,
+    discountPercentage: 15,
+    category: "electronics",
+    image: "https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?auto=format&fit=crop&w=600&q=80",
+    rating: 4,
+  },
+  {
+    id: "p19",
+    name: "Ergonomic Silent Wireless Vertical Mouse",
+    price: 1950,
+    discountPercentage: 10,
+    category: "electronics",
+    image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=600&q=80",
+    rating: 4,
+  },
+  {
+    id: "p20",
+    name: "Gourmet Roasted Salted Pistachios Pack",
+    price: 1250,
+    discountPercentage: 10,
+    category: "food",
+    image: "https://images.unsplash.com/photo-1541795795328-f073b763494e?auto=format&fit=crop&w=600&q=80",
+    rating: 5,
+  },
+  {
+    id: "p21",
+    name: "Organic Ceremonial Grade Matcha Green Tea",
+    price: 1450,
+    discountPercentage: 8,
+    category: "food",
+    image: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80",
+    rating: 4,
+  },
+  {
+    id: "p22",
+    name: "Artisanal Premium Dark Chocolate Assortment Box",
+    price: 1100,
+    discountPercentage: 15,
+    category: "food",
+    image: "https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=600&q=80",
+    rating: 5,
+  },
+  {
+    id: "p23",
+    name: "Rose Quartz Healing Facial Roller & Gua Sha Kit",
+    price: 1200,
+    discountPercentage: 15,
+    category: "beauty",
+    image: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=600&q=80",
+    rating: 5,
+  },
+  {
+    id: "p24",
+    name: "Oud Intense Royal Eau De Parfum (100ml)",
+    price: 5800,
+    discountPercentage: 18,
+    category: "beauty",
+    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80",
+    rating: 5,
+  },
+  {
+    id: "p25",
+    name: "Deluxe Wooden Architecture Craft Dollhouse Set",
+    price: 4500,
+    discountPercentage: 10,
+    category: "toys",
+    image: "https://images.unsplash.com/photo-1558877385-81a1c7e67d72?auto=format&fit=crop&w=600&q=80",
+    rating: 5,
+  },
+  {
+    id: "p26",
+    name: "STEM Interlocking Solar Robot Construction Kit",
+    price: 2350,
+    discountPercentage: 12,
+    category: "toys",
+    image: "https://images.unsplash.com/photo-1531525645387-7f14be1bdbbd?auto=format&fit=crop&w=600&q=80",
+    rating: 5,
+  },
+  {
+    id: "p27",
+    name: "Chic Minimalist Polarized Round Sunglasses",
+    price: 1650,
+    discountPercentage: 15,
+    category: "accessories",
+    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+    rating: 4,
+  },
+  {
+    id: "p28",
+    name: "Anti-Theft Smart Laptop Backpack with USB Port",
+    price: 2400,
+    discountPercentage: 20,
+    category: "accessories",
+    image: "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?auto=format&fit=crop&w=600&q=80",
+    rating: 5,
   }
 ];
 
-// Helper to convert standard numbers (including floats or formatted strings) into beautiful Bangla numerals
+// Helper to return standard English numbers directly
 export function convertToBanglaNumber(num: number | string): string {
-  const banglaDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
-  const numStr = num.toString();
-  let result = "";
-  for (let i = 0; i < numStr.length; i++) {
-    const char = numStr[i];
-    if (char >= "0" && char <= "9") {
-      result += banglaDigits[parseInt(char, 10)];
-    } else if (char === ".") {
-      result += ".";
-    } else {
-      result += char;
-    }
-  }
-  return result;
+  return num.toString();
 }
 
-// Format prices nicely with comma separation, e.g. 15,500 -> ১৫,৫০০
+// Format prices nicely with comma separation, e.g. 15,500
 export function formatBanglaPrice(price: number): string {
-  const formatted = Math.round(price).toLocaleString("en-US");
-  return convertToBanglaNumber(formatted);
+  return Math.round(price).toLocaleString("en-US");
 }

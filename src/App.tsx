@@ -43,16 +43,16 @@ export default function App() {
     const defaultMockOrders: Order[] = [
       {
         id: "AB-729482",
-        customerName: "মিরাজ হোসেন",
+        customerName: "Miraj Hossain",
         phone: "01712345678",
         division: "Dhaka",
-        address: "৪০/এ ধানমন্ডি লেক সার্কুলার রোড, ঢাকা-১২০৯",
+        address: "40/A Dhanmondi Lake Circular Road, Dhaka-1209",
         paymentMethod: "bkash",
         items: [
           {
             product: {
               id: "p9_1",
-              name: "কোরিয়ান ভিটামিন সি গ্লো বুস্টার ময়েশ্চারাইজার ক্রিম",
+              name: "Korean Vitamin C Glow Booster Moisturizer Cream",
               price: 1350,
               discountPercentage: 15,
               category: "beauty",
@@ -66,20 +66,20 @@ export default function App() {
         deliveryCharge: 60,
         totalAmount: 1208,
         status: "Pending",
-        date: "২৫/০৫/২০২৬, বিকাল ৪:২০"
+        date: "05/25/2026, 4:20 PM"
       },
       {
         id: "AB-290481",
-        customerName: "ফারহানা আক্তার",
+        customerName: "Farhana Akter",
         phone: "01998765432",
         division: "Chattogram",
-        address: "এইচ-২৫২, ওআর নিজাম রোড, জিইসি মোড়, চট্টগ্রাম",
+        address: "H-252, O.R. Nizam Road, GEC Circle, Chattogram",
         paymentMethod: "cod",
         items: [
           {
             product: {
               id: "p9_3",
-              name: "সিল্কি সফট লং-লাস্টিং ম্যাট লিপস্টিক সেট (৫টি রোমান্টিক শেড)",
+              name: "Silky Soft Long-Lasting Matte Lipstick Set (5 Shades)",
               price: 1150,
               discountPercentage: 25,
               category: "beauty",
@@ -93,7 +93,7 @@ export default function App() {
         deliveryCharge: 60,
         totalAmount: 1786,
         status: "Approved",
-        date: "২৪/০৫/২০২৬, সকাল ১০:১৫"
+        date: "05/24/2026, 10:15 AM"
       }
     ];
 
@@ -211,10 +211,10 @@ export default function App() {
     const randId = Math.floor(100000 + Math.random() * 900000).toString();
     
     const buyers = [
-      { name: "কাজী হাবিবুর রহমান", phone: "01715124151", address: "৩/১২ রাজিয়া সুলতানা রোড, মোহাম্মদপুর, ঢাকা", division: "Dhaka" },
-      { name: "তাসনোভা সুলতানা", phone: "01811223344", address: "সোবহানবাগ আবাসিক এলাকা, সিলেট", division: "Sylhet" },
-      { name: "মইনুল ইসলাম সজল", phone: "01988776655", address: "মহাপাল লেন, কোতোয়ালি, রংপুর", division: "Rangpur" },
-      { name: "নাবিলা তাবাসসুম", phone: "01533444555", address: "নিরালা হাউজিং এভিনিউ, খুলনা", division: "Khulna" }
+      { name: "Kazi Habibur Rahman", phone: "01715124151", address: "3/12 Razia Sultana Road, Mohammadpur, Dhaka", division: "Dhaka" },
+      { name: "Tasnova Sultana", phone: "01811223344", address: "Sobhanbag Residential Area, Sylhet", division: "Sylhet" },
+      { name: "Moinul Islam Sajal", phone: "01988776655", address: "Mahapal Lane, Kotwali, Rangpur", division: "Rangpur" },
+      { name: "Nabila Tabassum", phone: "01533444555", address: "Nirala Housing Avenue, Khulna", division: "Khulna" }
     ];
     
     const buyer = buyers[Math.floor(Math.random() * buyers.length)];
@@ -239,7 +239,7 @@ export default function App() {
       deliveryCharge: 60,
       totalAmount: discountedPrice + 60,
       status: "Pending",
-      date: new Date().toLocaleString("bn-BD", { hour12: true })
+      date: new Date().toLocaleString("en-US", { hour12: true })
     };
 
     setOrders((prev) => {
@@ -318,23 +318,23 @@ export default function App() {
               <div className="space-y-1">
                 <h2 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight flex items-center gap-2">
                   <span className="w-2.5 h-6 bg-[#E53935] rounded-full inline-block" />
-                  {selectedCategory === "all" && "আমাদের প্রিমিয়াম পণ্যসমূহ"}
-                  {selectedCategory === "clothing" && "ক্যাজুয়াল ও আরামদায়ক পোশাক"}
-                  {selectedCategory === "electronics" && "স্মার্ট গ্যাজেটস ও ইলেকট্রনিক্স"}
-                  {selectedCategory === "food" && "১০০% খাঁটি ও সুস্বাদু খাবার সামগ্রী"}
-                  {selectedCategory === "beauty" && "মেয়েদের রূপচর্চা ও রূপ-সৌন্দর্য সামগ্রী"}
-                  {selectedCategory === "toys" && "বাচ্চাদের রঙ্গিন ও মজাদার খেলনা"}
-                  {selectedCategory === "accessories" && "অন্যান্য আকর্ষণীয় লাইফস্টাইল পণ্যসমূহ"}
+                  {selectedCategory === "all" && "Our Premium Products"}
+                  {selectedCategory === "clothing" && "Casual & Comfortable Apparel"}
+                  {selectedCategory === "electronics" && "Smart Gadgets & Electronics"}
+                  {selectedCategory === "food" && "100% Pure & Delicious Foods"}
+                  {selectedCategory === "beauty" && "Girls' Cosmetics & Personal Beauty"}
+                  {selectedCategory === "toys" && "Kids' Colorful & Fun Toys"}
+                  {selectedCategory === "accessories" && "Other Attractive Lifestyle Products"}
                 </h2>
                 <p className="text-xs sm:text-sm text-gray-500 font-medium">
-                  সর্বমোট {convertToBanglaNumber(filteredProducts.length)} টি পণ্য খুজে পাওয়া গেছে
+                  Total {filteredProducts.length} items found
                 </p>
               </div>
 
               {/* Active Search indicators inside category header */}
               {(selectedCategory !== "all" || searchQuery.trim()) && (
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs text-gray-400 font-medium">অ্যাক্টিভ ফিল্টার:</span>
+                  <span className="text-xs text-gray-400 font-medium">Active Filter:</span>
                   <button
                     onClick={() => {
                       setSelectedCategory("all");
@@ -342,7 +342,7 @@ export default function App() {
                     }}
                     className="inline-flex items-center gap-1.5 text-xs bg-red-50 text-[#E53935] px-3.5 py-1.5 rounded-full border border-red-200 hover:bg-red-100 transition-colors font-bold cursor-pointer"
                   >
-                    রিসেট অল ফিল্টারস
+                    Reset All Filters
                     <RefreshCw className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -371,9 +371,9 @@ export default function App() {
                 </div>
                 
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-gray-900">দুঃখিত, কোনো প্রোডাক্ট পাওয়া যায়নি!</h3>
+                  <h3 className="text-xl font-bold text-gray-900">Sorry, no products found!</h3>
                   <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
-                    আপনার খোঁজা নামের সাথে মিলে যায় এমন প্রোডাক্ট আজকের বাজারে এই মুহূর্তে স্টক আউট或是নেই। দয়া করে ভিন্ন শব্দ ব্যবহার করুন অথবা ফিল্টার পরিবর্তন করুন।
+                    We couldn't find any products matching your search term. Please try different keywords or reset filters to explore our full collections.
                   </p>
                 </div>
 
@@ -384,7 +384,7 @@ export default function App() {
                   }}
                   className="bg-[#E53935] hover:bg-red-700 text-white font-extrabold text-xs sm:text-sm px-6 py-2.5 rounded-full shadow-md transition-all cursor-pointer"
                 >
-                  সব প্রোডাক্ট দেখুন
+                  View All Products
                 </button>
               </div>
             )}
@@ -429,7 +429,7 @@ export default function App() {
           >
             <ShoppingCart className="w-6.5 h-6.5" />
             <span className="absolute -top-1.5 -right-1 bg-white text-[#E53935] font-black text-xs w-6 h-6 rounded-full flex items-center justify-center border-2 border-[#E53935] shadow-lg">
-              {convertToBanglaNumber(cartCount)}
+              {cartCount}
             </span>
           </motion.button>
         )}

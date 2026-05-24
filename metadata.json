@@ -1,6 +1,6 @@
 {
   "name": "Ajker Bazar",
-  "description": "আজকের বাজার (Ajker Bazar) - বাংলাদেশের সেরা রেড ও হোয়াইট থিমের অনলাইন শপিং ই-কমার্স প্ল্যাটফর্ম।",
+  "description": "Ajker Bazar - A premium, modern red & white themed online e-commerce shop.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

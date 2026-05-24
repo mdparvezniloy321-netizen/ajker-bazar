@@ -38,10 +38,10 @@ export default function Categories({ selectedCategory, setSelectedCategory }: Ca
         {/* Title */}
         <div className="text-center mb-8">
           <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#E53935] uppercase bg-red-50 px-3.5 py-1.5 rounded-full border border-red-100">
-            ক্যাটাগরি সমূহ
+            Departments
           </span>
           <h2 className="text-2xl sm:text-3.5xl font-black text-gray-900 mt-3 tracking-tight">
-            জনপ্রিয় ক্যাটাগরিগুলো থেকে বেছে নিন
+            Choose From Our Popular Categories
           </h2>
           <div className="h-1.5 w-18 bg-[#E53935] mx-auto rounded-full mt-3" />
         </div>

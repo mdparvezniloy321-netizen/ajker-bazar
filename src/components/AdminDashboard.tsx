@@ -63,16 +63,16 @@ export default function AdminDashboard({
   };
 
   // Division translation
-  const divisionInBangla = (div: string) => {
+  const getDivisionLabel = (div: string) => {
     switch (div) {
-      case "Dhaka": return "ঢাকা বিভাগ";
-      case "Chattogram": return "চট্টগ্রাম বিভাগ";
-      case "Rajshahi": return "রাজশাহী বিভাগ";
-      case "Khulna": return "খুলনা বিভাগ";
-      case "Barishal": return "বরিশাল বিভাগ";
-      case "Sylhet": return "সিলেট বিভাগ";
-      case "Rangpur": return "রংপুর বিভাগ";
-      case "Mymensingh": return "ময়মনসিংহ বিভাগ";
+      case "Dhaka": return "Dhaka Division";
+      case "Chattogram": return "Chattogram Division";
+      case "Rajshahi": return "Rajshahi Division";
+      case "Khulna": return "Khulna Division";
+      case "Barishal": return "Barishal Division";
+      case "Sylhet": return "Sylhet Division";
+      case "Rangpur": return "Rangpur Division";
+      case "Mymensingh": return "Mymensingh Division";
       default: return div;
     }
   };
@@ -80,10 +80,10 @@ export default function AdminDashboard({
   // Payment method label
   const renderPaymentMethod = (method: string) => {
     switch (method) {
-      case "cod": return { label: "ক্যাশ অন ডেলিভারি (COD)", color: "bg-gray-100 text-gray-800" };
-      case "bkash": return { label: "বিকাশ লাইভ", color: "bg-pink-100 text-pink-700" };
-      case "nagad": return { label: "নগদ পে", color: "bg-orange-100 text-orange-700 font-bold" };
-      case "rocket": return { label: "রকেট পেমেন্ট", color: "bg-purple-100 text-purple-700" };
+      case "cod": return { label: "Cash on Delivery (COD)", color: "bg-gray-100 text-gray-800" };
+      case "bkash": return { label: "bKash wallet", color: "bg-pink-100 text-pink-700" };
+      case "nagad": return { label: "Nagad wallet", color: "bg-orange-100 text-orange-700 font-bold" };
+      case "rocket": return { label: "Rocket wallet", color: "bg-purple-100 text-purple-700" };
       default: return { label: method, color: "bg-gray-100 text-gray-800" };
     }
   };
@@ -133,14 +133,14 @@ export default function AdminDashboard({
             className="inline-flex items-center gap-2 text-xs font-bold bg-white hover:bg-rose-50 text-[#E53935] px-4 py-2.5 rounded-full border border-gray-200 transition-colors shadow-sm cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            গ্রাহক প্যানেলে ফিরে যান
+            Back to Customer View
           </button>
           <div className="h-6 w-px bg-gray-200 hidden md:block" />
           <div>
-            <h1 className="text-2xl sm:text-3xl font-black text-gray-900 flex items-center gap-2">
-              আজকের বাজার <span className="bg-[#E53935] text-white text-xs px-3 py-1 rounded-full uppercase font-mono tracking-wider ml-1">ADMIN CONTROL</span>
+            <h1 className="text-2xl sm:text-3xl font-black text-gray-900 flex items-center gap-2 font-sans">
+              Ajker Bazar <span className="bg-[#E53935] text-white text-xs px-3 py-1 rounded-full uppercase font-mono tracking-wider ml-1">ADMIN CONTROL</span>
             </h1>
-            <p className="text-xs sm:text-sm text-gray-500 font-medium">ড্যাশবোর্ড - সেলস ট্র্যাকিং ও অর্ডার প্রসেসিং সিস্টেম</p>
+            <p className="text-xs sm:text-sm text-gray-500 font-medium">Dashboard - Sales Tracker & Order Processing Hub</p>
           </div>
         </div>
 
@@ -153,15 +153,15 @@ export default function AdminDashboard({
               setNotificationCount(prev => prev + 1);
             }}
             className="bg-green-600 hover:bg-green-700 text-white font-extrabold text-xs px-4 py-2.5 rounded-xl shadow-md transition-colors flex items-center gap-2 cursor-pointer"
-            title="একটি নতুন অর্ডার সিমুলেট করুন"
+            title="Create a simulated demo customer order"
           >
             <PlusCircle className="w-4 h-4" />
-            সিমুলেটেড অর্ডার দিন
+            Add Simulated Order
           </button>
 
           <button
             onClick={() => {
-              if (confirm("আপনি কি নিশ্চিত যে আপনি সব অর্ডার মুছে দিতে চান?")) {
+              if (confirm("Are you sure you want to clear all orders?")) {
                 onClearAllOrders();
                 setNotificationCount(0);
                 setSelectedOrder(null);
@@ -169,7 +169,7 @@ export default function AdminDashboard({
             }}
             className="border border-red-200 text-red-600 bg-red-50 hover:bg-red-100 font-bold text-xs px-4 py-2.5 rounded-xl transition-colors cursor-pointer"
           >
-            ক্লিয়ার অল অর্ডারস
+            Clear All Orders
           </button>
         </div>
       </div>
@@ -181,13 +181,13 @@ export default function AdminDashboard({
           {/* Stat 1: Total Sales */}
           <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
             <div className="space-y-1.5">
-              <span className="text-xs text-gray-400 font-bold tracking-wider uppercase">মোট মোট বিক্রয় (সচল)</span>
+              <span className="text-xs text-gray-400 font-bold tracking-wider uppercase">Total Sales (Active)</span>
               <p className="text-2xl sm:text-3xl font-black text-gray-900 font-sans">
                 ৳{formatBanglaPrice(stats.sales)}
               </p>
               <div className="flex items-center gap-1 text-[11px] text-green-600 font-bold">
                 <TrendingUp className="w-3.5 h-3.5" />
-                <span>সফল ও পাইপলাইন ট্রানজেকশন</span>
+                <span>Successful & Pipeline Transactions</span>
               </div>
             </div>
             <div className="bg-green-50 text-green-600 p-4 rounded-2xl border border-green-100 shadow-inner">
@@ -198,13 +198,13 @@ export default function AdminDashboard({
           {/* Stat 2: Pending Orders */}
           <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
             <div className="space-y-1.5">
-              <span className="text-xs text-gray-400 font-bold tracking-wider uppercase">নতুন পেন্ডিং অর্ডার</span>
-              <p className="text-2xl sm:text-3xl font-black text-gray-900">
-                {convertToBanglaNumber(stats.pending)} <span className="text-xs text-gray-400 font-normal">টি</span>
+              <span className="text-xs text-gray-400 font-bold tracking-wider uppercase">New Pending Orders</span>
+              <p className="text-2xl sm:text-3xl font-black text-gray-900 font-sans">
+                {stats.pending} <span className="text-xs text-gray-400 font-normal">Orders</span>
               </p>
               <div className="flex items-center gap-1 text-[11px] text-amber-600 font-bold">
                 <Clock className="w-3.5 h-3.5 animate-pulse" />
-                <span>কনফার্মেশনের অপেক্ষায়</span>
+                <span>Awaiting confirmation</span>
               </div>
             </div>
             <div className="bg-amber-50 text-amber-600 p-4 rounded-2xl border border-amber-100 shadow-inner">
@@ -215,13 +215,13 @@ export default function AdminDashboard({
           {/* Stat 3: Processing & Shipped */}
           <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
             <div className="space-y-1.5">
-              <span className="text-xs text-gray-400 font-bold tracking-wider uppercase">অন-শিপিং বা প্রসেসড</span>
-              <p className="text-2xl sm:text-3xl font-black text-gray-900">
-                {convertToBanglaNumber(stats.approved + stats.shipped)} <span className="text-xs text-gray-400 font-normal">টি</span>
+              <span className="text-xs text-gray-400 font-bold tracking-wider uppercase">Processing & Shipped</span>
+              <p className="text-2xl sm:text-3xl font-black text-gray-900 font-sans">
+                {stats.approved + stats.shipped} <span className="text-xs text-gray-400 font-normal">Orders</span>
               </p>
               <div className="flex items-center gap-1 text-[11px] text-blue-600 font-bold">
                 <Truck className="w-3.5 h-3.5" />
-                <span>কুরিয়ারে হস্তান্তর বা প্রস্তুত</span>
+                <span>In courier or prepared</span>
               </div>
             </div>
             <div className="bg-blue-50 text-blue-600 p-4 rounded-2xl border border-blue-100 shadow-inner">
@@ -232,13 +232,13 @@ export default function AdminDashboard({
           {/* Stat 4: Completed Deliveries */}
           <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between">
             <div className="space-y-1.5">
-              <span className="text-xs text-gray-400 font-bold tracking-wider uppercase">সম্পন্ন ডেলিভারি</span>
-              <p className="text-2xl sm:text-3xl font-black text-gray-900">
-                {convertToBanglaNumber(stats.delivered)} <span className="text-xs text-gray-400 font-normal">টি</span>
+              <span className="text-xs text-gray-400 font-bold tracking-wider uppercase">Completed Deliveries</span>
+              <p className="text-2xl sm:text-3xl font-black text-gray-900 font-sans">
+                {stats.delivered} <span className="text-xs text-gray-400 font-normal">Orders</span>
               </p>
               <div className="flex items-center gap-1 text-[11px] text-emerald-600 font-bold">
                 <CheckCircle className="w-3.5 h-3.5" />
-                <span>সফলভাবে পৌঁছানো হয়েছে</span>
+                <span>Successfully Delivered</span>
               </div>
             </div>
             <div className="bg-emerald-50 text-emerald-600 p-4 rounded-2xl border border-emerald-100 shadow-inner">
@@ -252,14 +252,14 @@ export default function AdminDashboard({
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-red-50 text-[#E53935] px-5 py-4 rounded-2xl border border-rose-100 animate-pulse">
             <div className="flex items-center gap-2 text-xs sm:text-sm font-bold">
               <AlertCircle className="w-5 h-5 shrink-0" />
-              <span>আপনার কাছে {convertToBanglaNumber(stats.pending)} টি নতুন কাস্টমার অর্ডার অনুমোদনের জন্য অপেক্ষা করছে!</span>
+              <span>You have {stats.pending} new customer orders awaiting validation and approval!</span>
             </div>
             {notificationCount > 0 && (
               <button 
                 onClick={() => setNotificationCount(0)}
-                className="text-xs bg-white text-[#E53935] border border-rose-200 px-3 py-1 rounded-full hover:bg-rose-100 font-extrabold cursor-pointer"
+                className="text-xs bg-white text-[#E53935] border border-rose-200 px-3.5 py-1.5 rounded-full hover:bg-rose-100 font-extrabold cursor-pointer"
               >
-                পড়ুন হিসেবে চিহ্নিত করুন
+                Mark as Read
               </button>
             )}
           </div>
@@ -274,9 +274,9 @@ export default function AdminDashboard({
             {/* List Toolbar Control Panel */}
             <div className="p-5 border-b border-gray-100 bg-gray-50 flex flex-col md:flex-row items-center justify-between gap-4">
               <h3 className="font-bold text-gray-900 text-base sm:text-lg self-start md:self-auto flex items-center gap-2">
-                📂 সর্বমোট অর্ডার তালিকা
+                📂 Total Orders List
                 <span className="bg-[#E53935]/10 text-[#E53935] text-xs font-black px-2.5 py-0.5 rounded-full font-mono">
-                  {convertToBanglaNumber(filteredOrders.length)}
+                  {filteredOrders.length}
                 </span>
               </h3>
 
@@ -287,7 +287,7 @@ export default function AdminDashboard({
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="আইডি বা কাস্টমার নামে খুঁজুন..."
+                    placeholder="Search by ID or customer..."
                     className="w-full text-xs font-medium bg-white border border-gray-300 rounded-xl pl-9 pr-4 py-2 outline-none focus:border-[#E53935] transition-colors"
                   />
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
@@ -299,12 +299,12 @@ export default function AdminDashboard({
                   onChange={(e) => setStatusFilter(e.target.value)}
                   className="w-full sm:w-auto text-xs font-bold bg-white border border-gray-300 rounded-xl px-3 py-2 outline-none focus:border-[#E53935] cursor-pointer"
                 >
-                  <option value="all">সব স্ট্যাটাস</option>
-                  <option value="Pending">🕒Pending (পেন্ডিং)</option>
-                  <option value="Approved">👍Approved (অনুমোদিত)</option>
-                  <option value="Shipped">🚚Shipped (পাঠানো হয়েছে)</option>
-                  <option value="Delivered">✅Delivered (ডেলিভার্ড)</option>
-                  <option value="Cancelled">❌Cancelled (বাতিলকৃত)</option>
+                  <option value="all">All Statuses</option>
+                  <option value="Pending">🕒 Pending</option>
+                  <option value="Approved">👍 Approved</option>
+                  <option value="Shipped">🚚 Shipped</option>
+                  <option value="Delivered">✅ Delivered</option>
+                  <option value="Cancelled">❌ Cancelled</option>
                 </select>
               </div>
             </div>
@@ -346,18 +346,18 @@ export default function AdminDashboard({
                         <p className="text-xs text-gray-500 font-medium flex items-center gap-2">
                           <span className="flex items-center gap-0.5"><Phone className="w-3 h-3" /> {order.phone}</span>
                           <span className="text-gray-200">|</span>
-                          <span className="flex items-center gap-0.5 truncate"><MapPin className="w-3 h-3" /> {divisionInBangla(order.division)}</span>
+                          <span className="flex items-center gap-0.5 truncate"><MapPin className="w-3 h-3" /> {getDivisionLabel(order.division)}</span>
                         </p>
                       </div>
 
                       {/* Right: Price Tag and Action trigger badges */}
                       <div className="flex items-center gap-3 justify-between sm:justify-start">
                         <div className="text-left sm:text-right">
-                          <p className="text-xs text-gray-500 font-bold">মোট চার্জ:</p>
+                          <p className="text-xs text-[#E53935] font-bold">Total Charge:</p>
                           <p className="text-sm sm:text-base font-black text-[#E53935]">
                             ৳{formatBanglaPrice(order.totalAmount)}
                           </p>
-                          <p className="text-[10px] text-gray-400 font-medium">({convertToBanglaNumber(order.items.length)}টি প্রডাক্ট)</p>
+                          <p className="text-[10px] text-gray-400 font-medium">({order.items.length} items)</p>
                         </div>
 
                         <div className="flex flex-col items-end gap-1.5 min-w-[100px]">
@@ -365,30 +365,30 @@ export default function AdminDashboard({
                           {order.status === "Pending" && (
                             <span className="bg-amber-100 text-amber-700 font-bold text-[10px] sm:text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5">
                               <span className="w-1.5 h-1.5 bg-amber-500 rounded-full animate-ping" />
-                              🕒পেন্ডিং
+                              Pending
                             </span>
                           )}
                           {order.status === "Approved" && (
                             <span className="bg-indigo-100 text-indigo-700 font-bold text-[10px] sm:text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                              👍অনুমোদিত
+                              Approved
                             </span>
                           )}
                           {order.status === "Shipped" && (
                             <span className="bg-blue-100 text-blue-700 font-bold text-[10px] sm:text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                              🚚শিপড
+                              Shipped
                             </span>
                           )}
                           {order.status === "Delivered" && (
                             <span className="bg-emerald-100 text-emerald-800 font-bold text-[10px] sm:text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                              ✅ডেলিভার্ড
+                              Delivered
                             </span>
                           )}
                           {order.status === "Cancelled" && (
                             <span className="bg-rose-100 text-rose-700 font-bold text-[10px] sm:text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5">
-                              ❌বাতিলকৃত
+                              Cancelled
                             </span>
                           )}
-                          <span className="text-[9px] text-[#E53935] bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100 uppercase tracking-widest font-mono">বিস্তারিত দেখুন</span>
+                          <span className="text-[9px] text-[#E53935] bg-rose-50 px-1.5 py-0.5 rounded border border-rose-100 uppercase tracking-widest font-mono">View Details</span>
                         </div>
                       </div>
                     </div>
@@ -400,8 +400,8 @@ export default function AdminDashboard({
                     <Package className="w-10 h-10" />
                   </div>
                   <div className="space-y-1">
-                    <p className="font-bold text-gray-800 text-sm sm:text-base">কোনো অর্ডার পাওয়া যায়নি!</p>
-                    <p className="text-xs text-gray-400">এই মুহূর্তে কোনো কাস্টমার অর্ডার নেই। কাস্টমার ভিউতে ফিরে গিয়ে অর্ডার সাবমিট করুন অথবা "সিমুলেটেড অর্ডার দিন" এ ক্লিক করুন।</p>
+                    <p className="font-bold text-gray-800 text-sm sm:text-base">No orders registered!</p>
+                    <p className="text-xs text-gray-400">There are no orders in the system. Go to the Catalog view to submit an order or click "Add Simulated Order".</p>
                   </div>
                 </div>
               )}
@@ -418,32 +418,32 @@ export default function AdminDashboard({
                 {/* Header Actions */}
                 <div className="flex items-center justify-between border-b border-gray-100 pb-4">
                   <div>
-                    <h3 className="font-black text-gray-900 text-sm uppercase tracking-wide">অর্ডার প্রসেসিং হাব</h3>
+                    <h3 className="font-black text-gray-900 text-sm uppercase tracking-wide">Order Processing Hub</h3>
                     <div className="flex items-center gap-1 mt-1 text-xs text-gray-400">
-                      <span>অর্ডার আইডি:</span>
+                      <span>Order ID:</span>
                       <strong className="font-mono text-[#E53935]">{selectedOrder.id}</strong>
                       <button 
                         onClick={() => handleCopyId(selectedOrder.id)}
                         className="text-gray-400 hover:text-gray-800 p-0.5"
-                        title="অর্ডার আইডি কপি করুন"
+                        title="Copy Order ID"
                       >
                         <Copy className="w-3.5 h-3.5" />
                       </button>
                       {copiedId === selectedOrder.id && (
-                        <span className="text-[10px] text-green-600 bg-green-50 px-1.5 py-0.1 select-none border border-green-100 rounded">কপি হয়েছে!</span>
+                        <span className="text-[10px] text-green-600 bg-green-50 px-1.5 py-0.1 select-none border border-green-100 rounded">Copied!</span>
                       )}
                     </div>
                   </div>
 
                   <button 
                     onClick={() => {
-                      if (confirm("আপনি কি নিশ্চিত ড্রপডাউনটি ব্যবহার না করে এই অর্ডার কাস্টমার ডেটাবেজ থেকে মুছে ফেলবেন?")) {
+                      if (confirm("Are you sure you want to permanently delete this customer order?")) {
                         onDeleteOrder(selectedOrder.id);
                         setSelectedOrder(null);
                       }
                     }}
                     className="text-red-500 hover:bg-red-50 p-2 rounded-xl border border-red-100 transition-colors cursor-pointer"
-                    title="অর্ডারটি মুছুন"
+                    title="Delete Order"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -452,7 +452,7 @@ export default function AdminDashboard({
                 {/* Sub-State transition timeline triggers */}
                 <div className="space-y-2.5">
                   <h4 className="font-bold text-gray-800 text-xs sm:text-sm flex items-center gap-1.5 text-gray-900 uppercase">
-                    🛠️ কুরিয়ার ও কাস্টমার ওয়ান-ক্লিক স্ট্যাটাস অ্যাকশন
+                    🛠️ Carrier & Customer Lifecycle Actions
                   </h4>
                   
                   <div className="grid grid-cols-2 gap-2" id="order-lifecycle-actions">
@@ -467,7 +467,7 @@ export default function AdminDashboard({
                       }`}
                     >
                       <Check className="w-3.5 h-3.5 shrink-0" />
-                      অনুমোদন দিন
+                      Approve Order
                     </button>
 
                     {/* Ship button */}
@@ -481,7 +481,7 @@ export default function AdminDashboard({
                       }`}
                     >
                       <Truck className="w-3.5 h-3.5 shrink-0" />
-                      শিপমেন্ট রিলিজ
+                      Ship Order
                     </button>
 
                     {/* Deliver button */}
@@ -495,7 +495,7 @@ export default function AdminDashboard({
                       }`}
                     >
                       <CheckCircle className="w-3.5 h-3.5 shrink-0" />
-                      ডেলিভার করুন
+                      Deliver Order
                     </button>
 
                     {/* Cancel button */}
@@ -509,7 +509,7 @@ export default function AdminDashboard({
                       }`}
                     >
                       <XSquare className="w-3.5 h-3.5 shrink-0" />
-                      অর্ডার বাতিল করুন
+                      Cancel Order
                     </button>
                   </div>
                 </div>
@@ -518,16 +518,16 @@ export default function AdminDashboard({
                 <div className="bg-gray-50 rounded-2xl p-4 border border-gray-100 text-xs sm:text-sm space-y-3.5">
                   <h4 className="font-bold text-gray-800 text-xs border-b border-gray-200 pb-1.5 uppercase flex items-center gap-1">
                     <User className="w-3.5 h-3.5" />
-                    শিপিং ও কন্টাক্ট ডিক্লেয়ারেশন
+                    Shipping & Contact Details
                   </h4>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-0.5">
-                      <span className="text-[10px] text-gray-400 font-bold uppercase">গ্রাহকের নাম</span>
+                      <span className="text-[10px] text-gray-400 font-bold uppercase">Customer Name</span>
                       <p className="font-bold text-gray-900">{selectedOrder.customerName}</p>
                     </div>
                     <div className="space-y-0.5">
-                      <span className="text-[10px] text-gray-400 font-bold uppercase">মোবাইল নম্বর</span>
+                      <span className="text-[10px] text-gray-400 font-bold uppercase">Phone Number</span>
                       <p className="font-bold text-gray-900 text-xs sm:text-sm flex items-center gap-1">
                         <span className="w-1.5 h-1.5 bg-green-500 rounded-full inline-block" />
                         {selectedOrder.phone}
@@ -536,25 +536,25 @@ export default function AdminDashboard({
                   </div>
 
                   <div className="pt-2 border-t border-dashed border-gray-200 space-y-1">
-                    <span className="text-[10px] text-gray-400 font-bold uppercase">পূর্ণ ঠিকানা</span>
+                    <span className="text-[10px] text-gray-400 font-bold uppercase">Full Address</span>
                     <p className="text-gray-800 font-semibold leading-relaxed bg-white border border-gray-100 rounded-xl p-2.5 text-xs">
-                      {selectedOrder.address}, {divisionInBangla(selectedOrder.division)}
+                      {selectedOrder.address}, {getDivisionLabel(selectedOrder.division)}
                     </p>
                   </div>
 
                   <div className="pt-2 border-t border-dashed border-gray-200 grid grid-cols-2 gap-4">
                     <div className="space-y-0.5">
-                      <span className="text-[10px] text-gray-400 font-bold uppercase">পেমেন্ট মেথড</span>
+                      <span className="text-[10px] text-gray-400 font-bold uppercase">Payment Method</span>
                       <p className="font-bold text-gray-900 text-xs text-left">
-                        {selectedOrder.paymentMethod === "cod" && "📦 ক্যাশ অন ডেলিভারি (COD)"}
-                        {selectedOrder.paymentMethod === "bkash" && "💖 বিকাশ ওয়ালেট"}
-                        {selectedOrder.paymentMethod === "nagad" && "🧡 নগদ ওয়ালেট"}
-                        {selectedOrder.paymentMethod === "rocket" && "💜 রকেট পেমেন্ট"}
+                        {selectedOrder.paymentMethod === "cod" && "📦 Cash on Delivery (COD)"}
+                        {selectedOrder.paymentMethod === "bkash" && "💖 bKash Wallet"}
+                        {selectedOrder.paymentMethod === "nagad" && "🧡 Nagad Wallet"}
+                        {selectedOrder.paymentMethod === "rocket" && "💜 Rocket Wallet"}
                       </p>
                     </div>
                     {selectedOrder.trxId && (
                       <div className="space-y-0.5">
-                        <span className="text-[10px] text-gray-400 font-bold uppercase text-rose-600">ট্রানজেকশন আইডি (TrxID)</span>
+                        <span className="text-[10px] text-gray-400 font-bold uppercase text-rose-600">Transaction ID (TrxID)</span>
                         <p className="font-mono text-xs font-black text-[#E53935] uppercase bg-rose-50 px-2 py-1 rounded-lg border border-rose-100 w-fit">{selectedOrder.trxId}</p>
                       </div>
                     )}
@@ -564,7 +564,7 @@ export default function AdminDashboard({
                 {/* Ordered Items grid */}
                 <div className="space-y-3">
                   <h4 className="font-bold text-gray-800 text-xs uppercase tracking-wide">
-                    🎁 অর্ডারকৃত আইটেম তালিকা ({convertToBanglaNumber(selectedOrder.items.length)}টি প্রডাক্ট)
+                    🎁 Ordered Items List ({selectedOrder.items.length} items)
                   </h4>
 
                   <div className="divide-y divide-gray-100 max-h-48 overflow-y-auto pr-1">
@@ -586,7 +586,7 @@ export default function AdminDashboard({
                             <div className="min-w-0">
                               <p className="font-bold text-gray-900 truncate max-w-xs">{item.product.name}</p>
                               <p className="text-[10px] text-gray-400">
-                                ৳{formatBanglaPrice(itemDiscountedPrice)} x {convertToBanglaNumber(item.quantity)} পিস
+                                ৳{formatBanglaPrice(itemDiscountedPrice)} x {item.quantity} pcs
                               </p>
                             </div>
                           </div>
@@ -602,15 +602,15 @@ export default function AdminDashboard({
                 {/* Bill Summary */}
                 <div className="bg-rose-50/50 border border-rose-100 rounded-2xl p-4 text-xs sm:text-sm space-y-2">
                   <div className="flex items-center justify-between text-gray-500">
-                    <span>প্রোডাক্ট সাবটোটাল:</span>
+                    <span>Product Subtotal:</span>
                     <span className="font-semibold text-gray-800 font-sans">৳{formatBanglaPrice(selectedOrder.subtotal)}</span>
                   </div>
                   <div className="flex items-center justify-between text-gray-500">
-                    <span>কুরিয়ার চার্জ:</span>
+                    <span>Delivery Charge:</span>
                     <span className="font-semibold text-gray-800 font-sans">৳{formatBanglaPrice(selectedOrder.deliveryCharge)}</span>
                   </div>
                   <div className="border-t border-gray-200/60 pt-2 flex items-center justify-between font-black text-gray-900">
-                    <span>গ্র্যান্ড টোটাল:</span>
+                    <span>Grand Total:</span>
                     <span className="text-base text-[#E53935] font-sans">৳{formatBanglaPrice(selectedOrder.totalAmount)}</span>
                   </div>
                 </div>
@@ -622,9 +622,9 @@ export default function AdminDashboard({
                   <ShoppingBag className="w-10 h-10" />
                 </div>
                 <div className="space-y-1 max-w-xs mx-auto">
-                  <p className="font-black text-gray-800 text-sm uppercase">অর্ডার বিবরণী প্যানেল</p>
+                  <p className="font-black text-gray-800 text-sm uppercase">Order Details Hub</p>
                   <p className="text-xs text-gray-400 leading-relaxed">
-                    অর্ডারের ডেলিভারি শিপিং ঠিকানা, স্ট্যাটাস পরিবর্তন এবং পণ্য দেখতে কাস্টম ক্রনোলজি থেকে যেকোনো অর্ডার রো সিলেক্ট করুন।
+                    Select any order row from the list to view full shipping details, action triggers, and product breakdowns.
                   </p>
                 </div>
               </div>
@@ -638,13 +638,13 @@ export default function AdminDashboard({
         <div className="bg-white rounded-3xl border border-gray-100 shadow-md p-5 sm:p-6 space-y-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-gray-100 pb-4 gap-2">
             <div>
-              <h3 className="font-black text-gray-900 text-sm sm:text-base flex items-center gap-1.5 uppercase">
-                📦 আমাদের স্টক ইনভেন্টরি কুইক সামারি
+              <h3 className="font-black text-gray-900 text-sm sm:text-base flex items-center gap-1.5 uppercase font-sans">
+                📦 Quick Stock Inventory Summary
               </h3>
-              <p className="text-xs text-gray-400 font-medium">ইন-স্টক পণ্য তালিকা এবং সেলস পারফরমেন্স রিভিউ</p>
+              <p className="text-xs text-gray-400 font-medium">In-stock product catalogs and items overview</p>
             </div>
-            <span className="text-xs font-bold text-[#E53935] bg-rose-50 border border-rose-100 px-3 py-1 rounded-full">
-              মোট ক্যাটাগরি: ৬ টি
+            <span className="text-xs font-bold text-[#E53935] bg-rose-50 border border-rose-100 px-3 py-1 rounded-full font-mono">
+              Total Categories: 6
             </span>
           </div>
 
@@ -661,7 +661,7 @@ export default function AdminDashboard({
                   <p className="font-bold text-gray-800 line-clamp-2 h-7 leading-tight">{prod.name}</p>
                   <div className="flex items-center justify-between">
                     <span className="font-black text-[#E53935] font-sans">৳{formatBanglaPrice(prod.price * (1 - prod.discountPercentage / 100))}</span>
-                    <span className="text-[10px] text-green-600 font-bold bg-green-50 px-1 border border-green-100 rounded">স্টক আছে</span>
+                    <span className="text-[10px] text-green-600 font-bold bg-green-50 px-1 border border-green-100 rounded">In Stock</span>
                   </div>
                 </div>
               </div>

@@ -50,15 +50,15 @@ export default function CheckoutModal({
     const newErrors: { [key: string]: string } = {};
 
     if (!name.trim()) {
-      newErrors.name = "আপনার নাম লিখুন";
+      newErrors.name = "Please enter your name";
     }
     if (!phone.trim()) {
-      newErrors.phone = "আপনার মোবাইল নম্বরটি লিখুন";
+      newErrors.phone = "Please enter your mobile number";
     } else if (!/^\d{11}$/.test(phone.trim())) {
-      newErrors.phone = "সঠিক ১১ ডিজিটের মোবাইল নম্বরটি লিখুন (যেমন: ০১৭০০০০০০০০)";
+      newErrors.phone = "Please enter a valid 11-digit phone number (e.g., 01700000000)";
     }
     if (!address.trim()) {
-      newErrors.address = "সম্পূর্ণ ডেলিভারি ঠিকানা দিন";
+      newErrors.address = "Please enter your complete delivery address";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -66,9 +66,9 @@ export default function CheckoutModal({
       return;
     }
 
-    // Success! Generate mock Order ID in Bangla, e.g. AB-827461
+    // Success! Generate mock Order ID, e.g. AB-827461
     const randId = Math.floor(100000 + Math.random() * 900000).toString();
-    setOrderId("AB-" + convertToBanglaNumber(randId));
+    setOrderId("AB-" + randId);
     
     // Construct real order model
     const newOrder: Order = {
@@ -83,7 +83,7 @@ export default function CheckoutModal({
       deliveryCharge: deliveryCharge,
       totalAmount: totalAmount,
       status: "Pending",
-      date: new Date().toLocaleString("bn-BD", { hour12: true }),
+      date: new Date().toLocaleString("en-US", { hour12: true }),
       trxId: paymentMethod !== "cod" ? trxId : undefined
     };
     
@@ -106,17 +106,17 @@ export default function CheckoutModal({
     onClose();
   };
 
-  const divisionInBangla = (div: string) => {
+  const getDivisionName = (div: string) => {
     switch (div) {
-      case "Dhaka": return "ঢাকা বিভাগ";
-      case "Chattogram": return "চট্টগ্রাম বিভাগ";
-      case "Rajshahi": return "রাজশাহী বিভাগ";
-      case "Khulna": return "খুলনা বিভাগ";
-      case "Barishal": return "বরিশাল বিভাগ";
-      case "Sylhet": return "সিলেট বিভাগ";
-      case "Rangpur": return "রংপুর বিভাগ";
-      case "Mymensingh": return "ময়মনসিংহ বিভাগ";
-      default: return div;
+      case "Dhaka": return "Dhaka Division";
+      case "Chattogram": return "Chattogram Division";
+      case "Rajshahi": return "Rajshahi Division";
+      case "Khulna": return "Khulna Division";
+      case "Barishal": return "Barishal Division";
+      case "Sylhet": return "Sylhet Division";
+      case "Rangpur": return "Rangpur Division";
+      case "Mymensingh": return "Mymensingh Division";
+      default: return div + " Division";
     }
   };
 
@@ -147,7 +147,7 @@ export default function CheckoutModal({
               <div className="flex items-center gap-2">
                 <ShoppingBag className="w-5 h-5" />
                 <h3 className="font-extrabold text-base sm:text-lg">
-                  {orderCompleted ? "অর্ডার সম্পন্ন হয়েছে!" : "আপনার অর্ডার কনফার্ম করুন"}
+                  {orderCompleted ? "Order Placed Successfully!" : "Confirm Your Order"}
                 </h3>
               </div>
               {!orderCompleted && (
@@ -172,16 +172,16 @@ export default function CheckoutModal({
                     <div className="space-y-4">
                       <h4 className="font-bold text-gray-800 text-sm border-b border-gray-100 pb-2 flex items-center gap-1.5 text-[#E53935]">
                         <User className="w-4 h-4" />
-                        শিপিং ও কন্টাক্ট ইনফরমেশন
+                        Shipping & Contact Information
                       </h4>
 
                       {/* Name input */}
                       <div className="space-y-1">
-                        <label className="block text-xs sm:text-sm font-bold text-gray-700">আপনার নাম: <span className="text-[#E53935]">*</span></label>
+                        <label className="block text-xs sm:text-sm font-bold text-gray-700">Your Name: <span className="text-[#E53935]">*</span></label>
                         <div className="relative">
                           <input
                             type="text"
-                            placeholder="যেমন: আমিনুল ইসলাম"
+                            placeholder="e.g., Aminul Islam"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className={`w-full text-sm bg-gray-50 border rounded-xl pl-10 pr-4 py-2.5 outline-none transition-all ${
@@ -195,12 +195,12 @@ export default function CheckoutModal({
 
                       {/* Phone input */}
                       <div className="space-y-1">
-                        <label className="block text-xs sm:text-sm font-bold text-gray-700">মোবাইল নম্বর: <span className="text-[#E53935]">*</span></label>
+                        <label className="block text-xs sm:text-sm font-bold text-gray-700">Mobile Number: <span className="text-[#E53935]">*</span></label>
                         <div className="relative">
                           <input
                             type="tel"
                             maxLength={11}
-                            placeholder="যেমন: ০১XXXXXXXXX"
+                            placeholder="e.g., 017xxxxxxxx"
                             value={phone}
                             onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
                             className={`w-full text-sm bg-gray-50 border rounded-xl pl-10 pr-4 py-2.5 outline-none transition-all ${
@@ -214,29 +214,29 @@ export default function CheckoutModal({
 
                       {/* Division select dropdown */}
                       <div className="space-y-1">
-                        <label className="block text-xs sm:text-sm font-bold text-gray-700">বিভাগ সিলেক্ট করুন: <span className="text-[#E53935]">*</span></label>
+                        <label className="block text-xs sm:text-sm font-bold text-gray-700">Select Division: <span className="text-[#E53935]">*</span></label>
                         <select
                           value={division}
                           onChange={(e) => setDivision(e.target.value)}
                           className="w-full text-sm bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 outline-none focus:border-[#E53935] focus:bg-white focus:ring-2 focus:ring-rose-100 transition-all cursor-pointer font-bold"
                         >
-                          <option value="Dhaka">ঢাকা (Dhaka)</option>
-                          <option value="Chattogram">চট্টগ্রাম (Chattogram)</option>
-                          <option value="Rajshahi">রাজশাহী (Rajshahi)</option>
-                          <option value="Khulna">খুলনা (Khulna)</option>
-                          <option value="Barishal">বরিশাল (Barishal)</option>
-                          <option value="Sylhet">সিলেট (Sylhet)</option>
-                          <option value="Rangpur">রংপুর (Rangpur)</option>
-                          <option value="Mymensingh">ময়মনসিংহ (Mymensingh)</option>
+                          <option value="Dhaka">Dhaka</option>
+                          <option value="Chattogram">Chattogram</option>
+                          <option value="Rajshahi">Rajshahi</option>
+                          <option value="Khulna">Khulna</option>
+                          <option value="Barishal">Barishal</option>
+                          <option value="Sylhet">Sylhet</option>
+                          <option value="Rangpur">Rangpur</option>
+                          <option value="Mymensingh">Mymensingh</option>
                         </select>
                       </div>
 
                       {/* Address area */}
                       <div className="space-y-1">
-                        <label className="block text-xs sm:text-sm font-bold text-gray-700">ডেলিভারি ঠিকানা: <span className="text-[#E53935]">*</span></label>
+                        <label className="block text-xs sm:text-sm font-bold text-gray-700">Delivery Address: <span className="text-[#E53935]">*</span></label>
                         <div className="relative">
                           <textarea
-                            placeholder="যেমন: হাউজ নং- ১২, রোড নং- ৫, মিরপুর- ১০, ঢাকা"
+                            placeholder="e.g., House 12, Road 5, Mirpur 10, Dhaka"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                             rows={2}
@@ -257,7 +257,7 @@ export default function CheckoutModal({
                       <div>
                         <h4 className="font-bold text-gray-800 text-sm border-b border-gray-100 pb-2 flex items-center gap-1.5 text-[#E53935] mb-3">
                           <Landmark className="w-4 h-4" />
-                          পেমেন্ট মাধ্যম নির্বাচন করুন
+                          Select Payment Method
                         </h4>
 
                         <div className="grid grid-cols-2 gap-2.5" id="payment-gateways">
@@ -272,7 +272,7 @@ export default function CheckoutModal({
                             }`}
                           >
                             <span className="text-2xl leading-none">📦</span>
-                            <span className="text-xs">ক্যাশ অন ডেলিভারি</span>
+                            <span className="text-xs">Cash on Delivery</span>
                           </button>
 
                           {/* BKash */}
@@ -286,7 +286,7 @@ export default function CheckoutModal({
                             }`}
                           >
                             <span className="text-xs bg-pink-500 text-white font-extrabold px-2 py-0.5 rounded-md leading-none">bKash</span>
-                            <span className="text-xs">বিকাশ লাইভ পেমেন্ট</span>
+                            <span className="text-xs">bKash Payment</span>
                           </button>
 
                           {/* Nagad */}
@@ -300,7 +300,7 @@ export default function CheckoutModal({
                             }`}
                           >
                             <span className="text-xs bg-orange-500 text-white font-extrabold px-2 py-0.5 rounded-md leading-none">Nagad</span>
-                            <span className="text-xs">নগদ ওয়ালেট পেমেন্ট</span>
+                            <span className="text-xs">Nagad Payment</span>
                           </button>
 
                           {/* Rocket */}
@@ -314,7 +314,7 @@ export default function CheckoutModal({
                             }`}
                           >
                             <span className="text-xs bg-purple-700 text-white font-extrabold px-1.5 py-0.5 rounded-md leading-none">Rocket</span>
-                            <span className="text-xs">রকেট মোবাইল পেমেন্ট</span>
+                            <span className="text-xs">Rocket Payment</span>
                           </button>
                         </div>
 
@@ -329,23 +329,23 @@ export default function CheckoutModal({
                               <div className="flex items-center gap-1.5 font-bold text-gray-800">
                                 <span className="text-sm">⚡</span>
                                 <span>
-                                  {paymentMethod === "bkash" && "বিকাশ (bKash)"}
-                                  {paymentMethod === "nagad" && "নগদ (Nagad)"}
-                                  {paymentMethod === "rocket" && "রকেট (Rocket)"} পার্সোনাল পেমেন্ট করুন
+                                  Pay via {paymentMethod === "bkash" && "bKash"}
+                                  {paymentMethod === "nagad" && "Nagad"}
+                                  {paymentMethod === "rocket" && "Rocket"} Personal
                                 </span>
                               </div>
                               <span className="bg-[#E53935] text-white text-[10px] font-black px-2 py-0.5 rounded-full select-none uppercase tracking-wider">
-                                সেন্ড মানি (Send Money)
+                                Send Money
                               </span>
                             </div>
 
                             <p className="text-gray-700 font-semibold leading-relaxed">
-                              আমাদের পার্সোনাল নাম্বারে মোট <span className="font-sans font-black text-[#E53935] underline">৳{formatBanglaPrice(totalAmount)}</span> টাকা সেন্ড মানি করুন। নিচে পেমেন্ট রিসিভার নাম্বার দেওয়া আছে:
+                              Send a total of <span className="font-sans font-black text-[#E53935] underline">৳{formatBanglaPrice(totalAmount)}</span> to our personal details receiver number below:
                             </p>
 
                             <div className="bg-white border border-rose-200/50 rounded-xl p-2.5 flex items-center justify-between">
                               <div>
-                                <p className="text-[10px] text-gray-400 font-bold uppercase">রিসিভার নাম্বার (Receiver Number):</p>
+                                <p className="text-[10px] text-gray-400 font-bold uppercase">Receiver Number:</p>
                                 <p className="font-mono text-sm sm:text-base font-black text-gray-950 tracking-wide select-all">01823848660</p>
                               </div>
                               <button
@@ -358,18 +358,18 @@ export default function CheckoutModal({
                                 className="bg-rose-50 text-rose-600 hover:bg-[#E53935] hover:text-white px-3 py-2 rounded-lg border border-rose-100 font-extrabold text-[10px] transition-all cursor-pointer flex items-center gap-1 shrink-0"
                               >
                                 {copiedNumber ? (
-                                  <span className="text-green-600 font-bold">✓ কপি হয়েছে!</span>
+                                  <span className="text-green-600 font-bold">✓ Copied!</span>
                                 ) : (
-                                  <><span>📋</span> কপি করুন</>
+                                  <><span>📋</span> Copy Number</>
                                 )}
                               </button>
                             </div>
 
                             <div className="space-y-1.5 pt-1">
-                              <label className="block text-[11px] font-black text-gray-700">টাকা পাঠানোর পর বিকাশ/নগদ ট্রানজেকশন আইডি (TrxID) দিন: (ঐচ্ছিক)</label>
+                              <label className="block text-[11px] font-black text-gray-700">Enter payment Transaction ID (TrxID) after sending money: (Optional)</label>
                               <input
                                 type="text"
-                                placeholder="যেমন: 8X9Y7Z6W"
+                                placeholder="e.g. 8X9Y7Z6W"
                                 value={trxId}
                                 onChange={(e) => setTrxId(e.target.value.trim().toUpperCase())}
                                 className="w-full text-xs font-mono font-bold uppercase bg-white border border-gray-300 rounded-xl px-3 py-2.5 outline-none focus:border-[#E53935] transition-all shadow-inner placeholder:text-gray-300 placeholder:normal-case"
@@ -382,19 +382,19 @@ export default function CheckoutModal({
                       {/* Brief Bill Sheet */}
                       <div className="bg-gray-50 rounded-2xl p-4.5 border border-gray-100 space-y-2.5 text-xs sm:text-sm">
                         <h5 className="font-bold text-gray-800 border-b border-gray-200 pb-1.5 flex items-center justify-between">
-                          <span>অর্ডারের বিবরণ</span>
-                          <span className="text-[#E53935]">{convertToBanglaNumber(cartItems.length)}টি আইটেম</span>
+                          <span>Order Details</span>
+                          <span className="text-[#E53935]">{cartItems.length} {cartItems.length === 1 ? "Item" : "Items"}</span>
                         </h5>
                         <div className="flex items-center justify-between text-gray-500">
-                          <span>প্রোডাক্ট সাবটোটাল:</span>
+                          <span>Product Subtotal:</span>
                           <span className="font-semibold">৳{formatBanglaPrice(subtotal)}</span>
                         </div>
                         <div className="flex items-center justify-between text-gray-500">
-                          <span>ডেলিভারি চার্জ ({division === "Dhaka" ? "ঢাকার ভেতরে" : "ঢাকার বাইরে"}):</span>
+                          <span>Delivery Charge ({division === "Dhaka" ? "Inside Dhaka" : "Outside Dhaka"}):</span>
                           <span className="font-medium">৳{formatBanglaPrice(deliveryCharge)}</span>
                         </div>
                         <div className="border-t border-dashed border-gray-200 pt-2 flex items-center justify-between text-gray-900 font-black">
-                          <span>আজকের সর্বমোট চার্জ:</span>
+                          <span>Grand Total Payable:</span>
                           <span className="text-base text-[#E53935]">৳{formatBanglaPrice(totalAmount)}</span>
                         </div>
                       </div>
@@ -402,7 +402,7 @@ export default function CheckoutModal({
                       {/* Guarantee snippet */}
                       <p className="text-[10px] sm:text-xs text-gray-500 bg-amber-50 rounded-xl p-2.5 border border-amber-100 flex items-start gap-1.5 leading-relaxed">
                         <ShieldAlert className="w-5 h-5 text-amber-500 shrink-0" />
-                        <span>১০০% নিরাপদ ও সুরক্ষিত সার্ভার। আপনার কোনো কার্ড ইনফরমেশন আমাদের কাছে জমা রাখা থাকে না। নিশ্চিন্তে ক্যাশ অন ডেলিভারিতে অর্ডার দিন।</span>
+                        <span>100% safe & secure checkout. We do not store any card details. Order hassle-free with fallback Cash on Delivery.</span>
                       </p>
 
                     </div>
@@ -415,14 +415,14 @@ export default function CheckoutModal({
                       onClick={onClose}
                       className="text-gray-500 hover:bg-gray-100 font-bold text-xs sm:text-sm px-6 py-2.5 rounded-xl transition-all cursor-pointer"
                     >
-                      ফিরে যান
+                      Go Back
                     </button>
                     <button
                       type="submit"
                       className="bg-[#E53935] hover:bg-red-700 text-white font-extrabold text-xs sm:text-sm px-8 py-3 rounded-xl shadow-md cursor-pointer transition-all transform active:scale-95"
                       id="confirm-checkout-btn"
                     >
-                      অর্ডার কনফার্ম করুন
+                      Confirm Order
                     </button>
                   </div>
                 </form>
@@ -435,42 +435,42 @@ export default function CheckoutModal({
                   </div>
 
                   <div className="space-y-2">
-                    <h4 className="text-2xl font-black text-gray-900">অভিনন্দন! অর্ডার সম্পন্ন হয়েছে!</h4>
+                    <h4 className="text-2xl font-black text-gray-900">Congratulations! Order Placed!</h4>
                     <p className="text-sm text-gray-500 leading-relaxed">
-                      ধন্যবাদ <span className="font-extrabold text-gray-800">{name}</span>! আপনার অর্ডারটি আমরা সফলভাবে পেয়েছি। খুব শীঘ্রই আমাদের একজন কলিং রিপ্রেজেন্টেন্টেটিভ আপনাকে ফোন দিয়ে অর্ডারটি ভেরিফাই করবেন।
+                      Thank you <span className="font-extrabold text-gray-800">{name}</span>! We have successfully received your order. One of our support representatives will call you shortly to verify your order.
                     </p>
                   </div>
 
                   {/* Receipt brief */}
                   <div className="bg-[#FAFAFA] rounded-2xl p-5 border border-gray-100 space-y-3.5 text-left text-xs sm:text-sm">
                     <div className="flex items-center justify-between border-b border-gray-200 pb-2">
-                      <span className="font-bold text-gray-500 text-xs sm:text-sm uppercase tracking-wide">অর্ডার আইডি (Order ID):</span>
+                      <span className="font-bold text-gray-500 text-xs sm:text-sm uppercase tracking-wide">Order ID:</span>
                       <span className="font-black text-[#E53935] text-sm sm:text-base">{orderId}</span>
                     </div>
                     <div className="space-y-1">
                       <div className="flex justify-between text-gray-600">
-                        <span>ডেলিভারি ঠিকানা:</span>
-                        <span className="font-semibold text-gray-800">{divisionInBangla(division)}</span>
+                        <span>Delivery Info:</span>
+                        <span className="font-semibold text-gray-800">{getDivisionName(division)}</span>
                       </div>
                       <p className="text-gray-500 pr-2 block text-xs truncate bg-white rounded-lg p-1.5 border border-gray-50">{address}</p>
                     </div>
                     <div className="flex justify-between text-gray-600">
-                      <span>পেমেন্ট মেথড:</span>
+                      <span>Payment Method:</span>
                       <span className="font-bold uppercase text-gray-800">
-                        {paymentMethod === "cod" && "📦 ক্যাশ অন ডেলিভারি (COD)"}
-                        {paymentMethod === "bkash" && "💖 বিকাশ ওয়ালেট"}
-                        {paymentMethod === "nagad" && "🧡 নগদ ওয়ালেট"}
-                        {paymentMethod === "rocket" && "💜 রকেট পেমেন্ট"}
+                        {paymentMethod === "cod" && "📦 Cash on Delivery (COD)"}
+                        {paymentMethod === "bkash" && "💖 bKash Personal"}
+                        {paymentMethod === "nagad" && "🧡 Nagad Personal"}
+                        {paymentMethod === "rocket" && "💜 Rocket Personal"}
                       </span>
                     </div>
                     {paymentMethod !== "cod" && trxId && (
                       <div className="flex justify-between text-gray-600">
-                        <span>ট্রানজেকশন আইডি:</span>
+                        <span>Transaction ID (TrxID):</span>
                         <span className="font-mono font-black text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-100">{trxId}</span>
                       </div>
                     )}
                     <div className="flex justify-between text-gray-900 font-extrabold pt-1.5 border-t border-gray-200">
-                      <span>মোট পরিশোধযোগ্য মূল্য:</span>
+                      <span>Grand Total:</span>
                       <span className="text-[#E53935]">৳{formatBanglaPrice(totalAmount)}</span>
                     </div>
                   </div>
@@ -481,7 +481,7 @@ export default function CheckoutModal({
                     className="w-full bg-[#E53935] hover:bg-red-700 text-white font-extrabold text-sm py-3.5 rounded-xl shadow-md transition-all cursor-pointer"
                     id="finish-order-btn"
                   >
-                    শপিং চালিয়ে যান
+                    Continue Shopping
                   </button>
                 </div>
               )}
